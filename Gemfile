@@ -36,7 +36,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'rspec-cells'
-  gem 'webmock', require: 'webmock/rspec'
+  gem 'webmock'
   gem 'capybara'
   gem 'faker'
 end

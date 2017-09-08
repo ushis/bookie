@@ -1,0 +1,14 @@
+---
+services:
+  - docker
+
+before_install:
+  - docker network create bookie
+  - docker run -d --network bookie --name postgres -e POSTGRES_PASSWORD=secret -e POSTGRES_DB=test postgres:9.6
+  - docker run -d --network bookie --name minio -e MINIO_ACCESS_KEY=accesskey -e MINIO_SECRET_KEY=secretkey minio/minio server /srv
+
+install:
+  - docker build -t bookie .
+
+script:
+  -  docker run --network bookie --env-file .travis.env bookie rake

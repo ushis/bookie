@@ -4,6 +4,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
 require 'rspec/rails'
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -22,7 +23,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Disable all remote connections
 WebMock.disable_net_connect!(allow: [
-  'minio'
+  -> (uri) { uri.host == 'minio' }
 ])
 
 # Checks for pending migration and applies them before tests are run.
