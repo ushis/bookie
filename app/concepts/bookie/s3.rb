@@ -3,6 +3,8 @@ module Bookie
 
     def initialize(options={})
       @options = options
+
+      create_bucket
     end
 
     def write(content, options={})
@@ -51,6 +53,14 @@ module Bookie
 
     def acl
       @options[:acl]
+    end
+
+    def create_bucket
+      s3.create_bucket({
+        bucket: bucket,
+        acl: acl,
+      })
+    rescue Aws::S3::Errors::BucketAlreadyOwnedByYou
     end
   end
 end

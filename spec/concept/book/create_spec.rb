@@ -29,12 +29,13 @@ RSpec.describe Book::Create, type: :operation do
 
   let(:isbn_normalized) { isbn }
 
-  it 'successfully creates a book' do
+  it 'successfully creates a book with a cover' do
     expect(result).to be_success
     expect(result['model']).to be_persisted
     expect(result['model'].isbn).to eq(isbn)
     expect(result['model'].title).to eq(title)
     expect(result['model'].authors).to eq(authors)
+    expect(result['model'].cover).to be_present
   end
 
   context 'with 10 digit isbn' do
