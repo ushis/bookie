@@ -1,0 +1,5 @@
+en:
+  user:
+    sign_in:
+      errors:
+        invalid_credentials: 'Wrong username or password.'

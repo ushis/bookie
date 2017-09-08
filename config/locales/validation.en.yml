@@ -1,0 +1,5 @@
+en:
+  errors:
+    isbn?: "is not a valid isbn"
+    unique?: "is already taken"
+    confirmed?: "is not the same"

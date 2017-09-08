@@ -1,0 +1,26 @@
+nav.navbar.navbar-inverse.navbar-static-top
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed type='button' data-toggle='collapse' data-target='#navbar-collapse'
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = brand
+
+    .collapse.navbar-collapse#navbar-collapse
+      .ul.nav.navbar-nav.navbar-right
+        - if show_link_to_lookup?
+          li= link_to_lookup
+
+        - if show_link_to_sign_in?
+          li= link_to_sign_in
+
+        - if show_user_menu?
+          li.dropdown
+            a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'
+              => username
+              span.caret
+            ul.dropdown-menu
+              li= link_to_profile
+              li= link_to_sign_out

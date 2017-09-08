@@ -1,0 +1,41 @@
+.thumbnail {
+  figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+
+    img {
+      width: 100%;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.9);
+      transition: all 0.4s ease;
+    }
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+    figure {
+      .caption {
+        bottom: 0;
+      }
+    }
+  }
+}
+
+a.thumbnail {
+  transition: border-color 0.4s ease;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border-color: rgba(0, 0, 0, 0.9);
+  }
+}

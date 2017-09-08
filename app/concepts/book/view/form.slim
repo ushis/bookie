@@ -1,0 +1,5 @@
+= simple_form_for(contract, url: submit_url) do |f|
+  = f.input :isbn
+  = f.input :title
+  = f.input :authors
+  = f.submit 'Save book', class: 'btn btn-success'
