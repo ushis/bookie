@@ -9,6 +9,7 @@ RUN apk add --no-cache \
   ruby-irb \
   ruby-json \
   build-base \
+  git \
   imagemagick \
   libffi-dev \
   libxml2-dev \

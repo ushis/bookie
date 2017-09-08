@@ -11,4 +11,5 @@ install:
   - docker build -t bookie .
 
 script:
-  -  docker run --network bookie --env-file .travis.env bookie rake
+  - env | grep -P '^(TRAVIS|CI)' >> .travis.env
+  - docker run --network bookie --env-file .travis.env bookie rake
