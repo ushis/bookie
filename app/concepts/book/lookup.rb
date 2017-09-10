@@ -1,4 +1,5 @@
 require_dependency 'book'
+require_dependency 'book/cover/worker/lookup'
 require_dependency 'book/create'
 require_dependency 'book/isbn/lookup'
 require_dependency 'book/lookup/new'
@@ -11,6 +12,10 @@ class Book < ApplicationRecord
     step self::Contract::Persist(method: :sync, name: :lookup)
 
     step :find!
+
+    step -> (options, proxy:, **) {
+      Cover::Worker::Lookup.perform_async(proxy.isbn)
+    }
 
     step self::Nested(ISBN::Lookup, input: -> (options, mutable_data:, **) {
       {isbn: mutable_data['proxy'].isbn}

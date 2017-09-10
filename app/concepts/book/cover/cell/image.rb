@@ -1,4 +1,4 @@
-require_dependency 'book/cover/proxy'
+require_dependency 'book/cover/proxy/default'
 require_dependency 'bookie/cell'
 
 class Book < ApplicationRecord
@@ -14,7 +14,7 @@ class Book < ApplicationRecord
 
         def url
           if model.present? # FIXME move to builder
-            Proxy.new(model).image[version].url
+            Proxy::Default.new(model).image[version].url
           else
             "concepts/book/cover/fallback/#{version}.png"
           end

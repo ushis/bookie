@@ -4,13 +4,6 @@ class Factory
 
     key :book
 
-    before {
-      Faker::Internet.url.tap { |url|
-        NetStub::BigBookSearch.stub_request(isbn, url)
-        NetStub::Image.stub_request(url)
-      }
-    }
-
     dependency :current_user, -> { User.create }
 
     property :isbn, -> {
