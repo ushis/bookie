@@ -16,7 +16,7 @@ class Book < ApplicationRecord
 
       def find!(options, isbn:, **)
         options['model'] = ::Cover.find_by(isbn: isbn)
-        options['model'].present? ? RailWay.pass_fast! : true
+        options['model'].present? ? Railway.pass_fast! : true
       end
 
       def proxy!(options, model:, isbn:, **)

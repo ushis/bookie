@@ -6,7 +6,7 @@ class Book < ApplicationRecord
       class Lookup < Bookie::Operation
         ENDPOINT = 'http://bigbooksearch.com/query.php'
 
-        PARAMS = {SearchIndex: 'books', ItemPage: 1}
+        PARAMS = {SearchIndex: 'all', ItemPage: 1}
 
         step :params!
         step :request!

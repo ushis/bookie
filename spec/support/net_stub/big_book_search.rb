@@ -2,7 +2,7 @@ module NetStub
   class BigBookSearch
     ENDPOINT = 'http://bigbooksearch.com/query.php'
 
-    PARAMS = {ItemPage: 1, SearchIndex: 'books'}
+    PARAMS = {ItemPage: 1, SearchIndex: 'all'}
 
     def self.stub_request(isbn, urls=nil)
       new(isbn, urls).tap(&:stub).urls

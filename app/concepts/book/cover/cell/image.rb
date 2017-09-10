@@ -1,3 +1,4 @@
+require_dependency 'book/cover/cell/image/fallback'
 require_dependency 'book/cover/proxy/default'
 require_dependency 'bookie/cell'
 
@@ -6,6 +7,15 @@ class Book < ApplicationRecord
     module Cell
       class Image < Bookie::Cell
 
+        builds do |model, options|
+          case model
+          when nil
+            Fallback
+          else
+            Image
+          end
+        end
+
         def show
           image_tag(url, alt: alt)
         end
@@ -13,11 +23,7 @@ class Book < ApplicationRecord
         private
 
         def url
-          if model.present? # FIXME move to builder
-            Proxy::Default.new(model).image[version].url
-          else
-            "concepts/book/cover/fallback/#{version}.png"
-          end
+          Proxy::Default.new(model).image[version].url
         end
 
         def version
