@@ -8,6 +8,7 @@ gem 'kaminari'
 
 gem 'bcrypt'
 gem 'rest-client'
+gem 'sidekiq'
 
 gem 'dragonfly'
 gem 'aws-sdk-s3'

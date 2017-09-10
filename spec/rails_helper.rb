@@ -12,6 +12,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 require 'webmock/rspec'
+require 'sidekiq/testing'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -32,6 +33,9 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 WebMock.disable_net_connect!(allow: [
   -> (uri) { uri.host == 'minio' }
 ])
+
+# Inline all background jobs
+Sidekiq::Testing.inline!
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.

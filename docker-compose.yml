@@ -3,10 +3,11 @@ version: '2'
 volumes:
   bundle:
   postgres:
+  redis:
   minio:
 
 services:
-  app:
+  app: &bookie
     build: .
     volumes:
       - .:/home/app/src
@@ -20,6 +21,7 @@ services:
       POSTGRES_HOST: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
+      REDIS_URL: redis://redis:6379/1
       SMTP_HOST: maildev
       SMTP_PORT: 25
       S3_URL_HOST: http://localhost:9000
@@ -27,12 +29,26 @@ services:
       S3_ACCESS_KEY: accesskey
       S3_SECRET_KEY: secretkey
 
+  sidekiq:
+    <<: *bookie
+    ports: []
+    depends_on:
+      - postgres
+      - redis
+      - minio
+    command: sidekiq
+
   postgres:
     image: postgres:9.6
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: secret
+
+  redis:
+    image: redis:4
+    volumes:
+      - redis:/data
 
   minio:
     image: minio/minio

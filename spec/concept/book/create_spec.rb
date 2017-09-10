@@ -35,7 +35,6 @@ RSpec.describe Book::Create, type: :operation do
     expect(result['model'].isbn).to eq(isbn)
     expect(result['model'].title).to eq(title)
     expect(result['model'].authors).to eq(authors)
-    expect(result['model'].cover).to be_present
   end
 
   context 'with 10 digit isbn' do
