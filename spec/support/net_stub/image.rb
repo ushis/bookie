@@ -1,14 +1,14 @@
 module NetStub
   class Image
 
-    def self.stub_request(url)
+    def self.stub_request(url=nil)
       new(url).tap(&:stub).url
     end
 
     attr_reader :url
 
-    def initialize(url)
-      @url = url
+    def initialize(url=nil)
+      @url = url.nil? ? random_url : url
     end
 
     def stub
@@ -18,6 +18,10 @@ module NetStub
     end
 
     private
+
+    def random_url
+      Faker::Internet.url
+    end
 
     def jpg
       Base64.decode64(
