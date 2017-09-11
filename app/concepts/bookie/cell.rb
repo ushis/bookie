@@ -1,11 +1,12 @@
 module Bookie
   class Cell < Trailblazer::Cell
-    include Escaped
     include ::Cell::Builder
-
     include OcticonsHelper
-
     include SimpleForm::ActionViewExtensions::FormHelper
+
+    def html_safe?
+      true
+    end
 
     private
 

@@ -9,7 +9,7 @@ class Book < ApplicationRecord
       end
 
       def pagination
-        concept('bookie/cell/pagination', books)
+        concept('bookie/cell/pagination', books, params: {q: options[:q]})
       end
     end
   end

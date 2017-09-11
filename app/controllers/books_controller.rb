@@ -4,7 +4,11 @@ class BooksController < ApplicationController
   def index
     run Book::Index do |result|
       render_concept('book/cell/index', nil, {
+        q: result['q'],
         books: result['books'],
+        context: {
+          q: result['q'],
+        },
       })
     end
   end

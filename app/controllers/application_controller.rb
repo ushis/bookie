@@ -4,13 +4,13 @@ class ApplicationController < ActionController::Base
   private
 
   def render_concept(name, model, dependencies={})
-    render(concept(name, model, dependencies.reverse_merge({
+    render(concept(name, model, {
       context: {
         current_user: current_user,
         current_session: current_session,
       },
       layout: Bookie::Cell::Layout,
-    })), layout: false)
+    }.deep_merge(dependencies)), layout: false)
   end
 
   def _run_options(options)

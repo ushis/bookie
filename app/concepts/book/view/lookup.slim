@@ -1,5 +1,5 @@
 .panel.panel-default
   .panel-body
-    = simple_form_for(contract, url: submit_url) do |f|
+    == simple_form_for(contract, url: submit_url) do |f|
       = f.input :isbn, input_html: {autofocus: true}
       = f.submit 'Lookup', class: 'btn btn-success'

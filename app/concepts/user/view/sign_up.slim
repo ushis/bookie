@@ -6,7 +6,7 @@
 
       .panel.panel-default
         .panel-body
-          = simple_form_for(contract, url: submit_url) do |f|
+          == simple_form_for(contract, url: submit_url) do |f|
             = f.input :username
             = f.input :email
             = f.input :password
