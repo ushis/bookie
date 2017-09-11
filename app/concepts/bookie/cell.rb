@@ -24,9 +24,5 @@ module Bookie
     def protect_against_forgery?
       context.fetch(:controller).send(:protect_against_forgery?)
     end
-
-    def form_authenticity_token(*args)
-      context.fetch(:controller).send(:form_authenticity_token, *args)
-    end
   end
 end
