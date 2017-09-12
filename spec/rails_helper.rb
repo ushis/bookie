@@ -50,9 +50,6 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
 
-  # Include Capybara matchers in cell specs
-  config.include Capybara::RSpecMatchers, type: :cell
-
   # Include feature helper in feature tests
   config.include FeatureHelper, type: :feature
 
