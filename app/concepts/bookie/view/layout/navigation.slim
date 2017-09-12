@@ -31,7 +31,7 @@ nav.navbar.navbar-inverse.navbar-static-top
               li= link_to_profile
               li= link_to_sign_out
 
-      form.navbar-form action=search_url method='get'
+      == form_tag(search_url, method: :get, class: 'navbar-form') do
         .form-group
           label.sr-only for='q' Search
           .input-group
