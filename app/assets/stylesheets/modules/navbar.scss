@@ -1,0 +1,30 @@
+.navbar {
+  &.navbar-inverse {
+    .navbar-nav {
+      > .open {
+        > a {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .navbar-form {
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: 0 none transparent;
+    }
+
+    .form-group {
+      display: inline;
+
+      .input-group {
+        display: table;
+
+        .input-group-btn {
+          width: 1%;
+        }
+      }
+    }
+  }
+}

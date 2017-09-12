@@ -9,6 +9,14 @@ module Bookie
           link_to('Bookie', root_path, class: 'navbar-brand')
         end
 
+        def search_url
+          root_path
+        end
+
+        def search_query
+          context[:q]
+        end
+
         def show_link_to_lookup?
           Book::Guard::Lookup.(current_user: current_user)
         end

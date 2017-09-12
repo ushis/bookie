@@ -1,11 +1,12 @@
 module Bookie
   class Cell < Trailblazer::Cell
-    include Escaped
     include ::Cell::Builder
-
     include OcticonsHelper
-
     include SimpleForm::ActionViewExtensions::FormHelper
+
+    def html_safe?
+      true
+    end
 
     private
 
@@ -22,10 +23,6 @@ module Bookie
     # https://github.com/trailblazer/cells-rails/issues/23
     def protect_against_forgery?
       context.fetch(:controller).send(:protect_against_forgery?)
-    end
-
-    def form_authenticity_token(*args)
-      context.fetch(:controller).send(:form_authenticity_token, *args)
     end
   end
 end

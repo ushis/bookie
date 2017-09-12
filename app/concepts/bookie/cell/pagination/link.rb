@@ -6,11 +6,15 @@ module Bookie
         private
 
         def url
-          url_for(page: page)
+          url_for(params.merge(page: page))
         end
 
         def page
           options.fetch(:page)
+        end
+
+        def params
+          options.fetch(:params)
         end
 
         def classes

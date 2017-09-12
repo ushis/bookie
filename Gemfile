@@ -36,9 +36,9 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'rspec-cells'
   gem 'webmock'
-  gem 'capybara'
   gem 'faker'
   gem 'coveralls', require: false
 end
