@@ -38,7 +38,7 @@ module Bookie
         end
 
         def link_to_profile
-          link_to('Profile', '#')
+          link_to('Your Profile', user_path(current_user))
         end
 
         def link_to_sign_out

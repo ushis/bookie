@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
 
+  # GET /users/:id
+  def show
+    run User::Find do |result|
+      render_concept('user/cell/show', result['model'])
+      return
+    end
+
+    redirect_to root_url
+  end
+
   # GET /sign_in
   def sign_in_form
     run User::SignIn::New do |result|
