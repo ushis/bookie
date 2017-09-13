@@ -15,7 +15,7 @@ class Book < ApplicationRecord
       end
 
       def cover
-        concept('book/cover/cell/image', model.cover, version: version)
+        concept('book/cell/cover', model, version: version)
       end
 
       def version

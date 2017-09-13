@@ -1,9 +1,10 @@
 .navbar {
   &.navbar-inverse {
     .navbar-nav {
-      > .open {
-        > a {
-          background-color: transparent;
+      .avatar {
+        img {
+          border-radius: 3px;
+          vertical-align: bottom;
         }
       }
     }
@@ -20,6 +21,7 @@
 
       .input-group {
         display: table;
+        padding: 0 15px;
 
         .input-group-btn {
           width: 1%;

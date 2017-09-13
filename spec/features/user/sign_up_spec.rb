@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Sign up', type: :feature do
   let(:factory) { Factory::User.new }
 
+  before { NetStub::RoboHash.stub_request(factory.username, factory.email) }
+
   before { visit('/') }
 
   it 'is possible to navigate to the sign up form and sign up' do
