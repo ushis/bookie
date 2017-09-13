@@ -14,4 +14,6 @@ Rails.application.routes.draw do
       post '/lookup', to: 'books#lookup'
     end
   end
+
+  resources :users, only: [:show]
 end

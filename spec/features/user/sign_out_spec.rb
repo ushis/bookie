@@ -12,7 +12,6 @@ RSpec.describe 'Sign out', type: :feature do
     expect(page).to have_selector('nav.navbar')
 
     within('nav.navbar') do
-      click_link(user.username)
       click_link('Sign out')
     end
 
