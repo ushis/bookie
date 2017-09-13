@@ -1,0 +1,11 @@
+.dropdown-menu {
+  > li {
+    > .text {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      color: #586069;
+      white-space: nowrap;
+    }
+  }
+}

@@ -6,7 +6,7 @@ class Book < ApplicationRecord
       private
 
       def cover
-        concept('book/cover/cell/image', model.cover, version: :large)
+        concept('book/cell/cover', model, version: :large)
       end
 
       def authors

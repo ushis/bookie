@@ -24,11 +24,14 @@ RSpec.describe User::Create, type: :operation do
 
   let(:password_hash) { result['model'].auth_meta_data['password_hash'] }
 
+  before { NetStub::RoboHash.stub_request(username, email) }
+
   it 'successfully saves the new user' do
     expect(result).to be_success
     expect(result['model']).to be_persisted
     expect(result['model'].username).to eq(username)
     expect(result['model'].email).to eq(email)
+    expect(result['model'].avatar).to be_present
     expect(BCrypt::Password.new(password_hash)).to eq(password)
   end
 

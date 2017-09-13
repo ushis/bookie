@@ -48,6 +48,10 @@ module Bookie
         def username
           current_user.username
         end
+
+        def avatar
+          concept('user/cell/avatar', current_user, version: :tiny)
+        end
       end
     end
   end

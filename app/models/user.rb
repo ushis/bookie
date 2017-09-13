@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_many :sessions,
-    dependent: :destroy
+    dependent: :destroy,
+    class_name: '::Session'
 
-  serialize :auth_meta_data
+  has_one :avatar,
+    dependent: :destroy,
+    class_name: '::Avatar'
 end

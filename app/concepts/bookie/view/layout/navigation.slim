@@ -25,9 +25,15 @@ nav.navbar.navbar-inverse.navbar-static-top
         - if show_user_menu?
           li.dropdown
             a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'
-              => username
+              span.avatar
+                => avatar
               span.caret
             ul.dropdown-menu
+              li
+                span.text
+                  | Signed in as
+                  strong=< username
+              li.divider role='separator'
               li= link_to_profile
               li= link_to_sign_out
 
