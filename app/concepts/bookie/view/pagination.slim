@@ -1,6 +1,7 @@
-.bookie-pagination.row
-  .col-xs-6.col-sm-3.col-sm-offset-3.col-md-2.col-md-offset-4
-    = link_to_prev_page
-
-  .col-xs-6.col-sm-3.col-md-2
-    = link_to_next_page
+.row
+  .col-xs-12
+    .bookie-pagination
+      .bookie-pagination-pager.prev
+        = link_to_prev_page
+      .bookie-pagination-pager.next
+        = link_to_next_page

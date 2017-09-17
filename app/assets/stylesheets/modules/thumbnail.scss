@@ -10,9 +10,10 @@
 
     .caption {
       position: absolute;
-      bottom: -100%;
+      top: 100%;
       left: 0;
       right: 0;
+      bottom: 0;
       color: #fff;
       background-color: rgba(0, 0, 0, 0.9);
       transition: all 0.4s ease;
@@ -24,7 +25,7 @@
   &:active {
     figure {
       .caption {
-        bottom: 0;
+        top: 0;
       }
     }
   }

@@ -2,8 +2,10 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
-    run User::Find do |result|
-      render_concept('user/cell/show', result['model'])
+    run User::Show do |result|
+      render_concept('user/cell/show', result['model'], {
+        books: result['books'],
+      })
       return
     end
 

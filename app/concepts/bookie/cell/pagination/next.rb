@@ -6,7 +6,7 @@ module Bookie
         private
 
         def text
-          'Next'
+          'Next Page'
         end
       end
     end

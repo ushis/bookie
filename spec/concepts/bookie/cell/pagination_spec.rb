@@ -40,16 +40,16 @@ RSpec.describe Bookie::Cell::Pagination, type: :cell do
   let(:current_page) { rand(2..100) }
 
   it 'has active links to the previous and the next page' do
-    expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Previous')
-    expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Next')
+    expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Previous Page')
+    expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Next Page')
   end
 
   context 'when current page ist the first page' do
     let(:current_page) { 1 }
 
     it 'has a disabled link to the previous page' do
-      expect(cell).to have_selector('.bookie-pagination a.disabled', text: 'Previous')
-      expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Next')
+      expect(cell).to have_selector('.bookie-pagination a.disabled', text: 'Previous Page')
+      expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Next Page')
     end
   end
 
@@ -57,8 +57,8 @@ RSpec.describe Bookie::Cell::Pagination, type: :cell do
     let(:total_pages) { current_page }
 
     it 'has a disabled link to the next page' do
-      expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Previous')
-      expect(cell).to have_selector('.bookie-pagination a.disabled', text: 'Next')
+      expect(cell).to have_selector('.bookie-pagination a:not(.disabled)', text: 'Previous Page')
+      expect(cell).to have_selector('.bookie-pagination a.disabled', text: 'Next Page')
     end
   end
 

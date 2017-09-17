@@ -19,6 +19,10 @@ class Book < ApplicationRecord
         options.fetch(:books)
       end
 
+      def list_of_books
+        concept('book/cell/list', nil, books: books)
+      end
+
       def pagination
         concept('bookie/cell/pagination', books, {
           params: {

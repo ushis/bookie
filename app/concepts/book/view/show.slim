@@ -1,10 +1,16 @@
 .row
-  .col-xs-4.col-md-3
+  .col-xs-12.col-sm-4.col-md-3
     .thumbnail
       figure
         = cover
 
-  .col-xs-8.col-md-9
+    - if show_button_to_create_copy?
+      = button_to_create_copy
+
+    - if show_button_to_destroy_copy?
+      = button_to_destroy_copy
+
+  .col-xs-12.col-sm-8.col-md-9
     h1= title
 
     p= authors
