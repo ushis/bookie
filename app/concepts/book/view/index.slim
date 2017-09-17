@@ -1,6 +1,2 @@
-.row
-  - books.each do |book|
-    .col-xs-6.col-sm-3.col-md-2
-      = concept('book/cell/thumbnail', book, version: :large_preview)
-
+= list_of_books
 = pagination

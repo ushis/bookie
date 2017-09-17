@@ -7,3 +7,14 @@
     h1
       strong
         = username
+
+  .col-xs-8.col-md-9
+    ul.nav.nav-tabs.nav-underline
+      li.active
+        a href='#'
+          | Books
+          span.badge<
+            = books_count
+
+    = list_of_books
+    = pagination

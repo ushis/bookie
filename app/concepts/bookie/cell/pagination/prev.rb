@@ -6,7 +6,7 @@ module Bookie
         private
 
         def text
-          'Previous'
+          'Previous Page'
         end
       end
     end

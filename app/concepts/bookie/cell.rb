@@ -8,6 +8,10 @@ module Bookie
       true
     end
 
+    def with_output_buffer(block_buffer=ActiveSupport::SafeBuffer.new, &block)
+      super(block_buffer, &block)
+    end
+
     private
 
     def current_user

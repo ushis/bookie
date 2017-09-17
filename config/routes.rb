@@ -15,5 +15,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :copies, only: [:create] do
+    collection do
+      delete '/', to: 'copies#destroy'
+    end
+  end
+
   resources :users, only: [:show]
 end
