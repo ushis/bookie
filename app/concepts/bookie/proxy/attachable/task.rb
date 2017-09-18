@@ -3,19 +3,17 @@ module Bookie
     module Attachable
       class Task
 
-        def initialize(job, &block)
-          @job = job
-          @versions = {}
+        def initialize(attachment, file, &block)
+          @job = ::Dragonfly.app.create(file)
+          @attachment = attachment
 
-          block.call(self) if !block.nil?
+          yield(self) if block_given?
         end
 
         def process!(version)
-          @versions[version.to_s] = yield(@job).store
-        end
-
-        def versions
-          @versions.dup
+          job = @job
+          job = yield(job) if block_given?
+          @attachment.meta_data[version.to_s] = {'uid' => job.store}
         end
       end
     end
