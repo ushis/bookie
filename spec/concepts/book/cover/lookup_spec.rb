@@ -14,6 +14,7 @@ RSpec.describe Book::Cover::Lookup do
     expect(result['model']).to be_persisted
 
     Book::Cover::Proxy::Default.new(result['model']).tap do |proxy|
+      expect(proxy.image[:original]).to be_present
       expect(proxy.image[:small]).to be_present
       expect(proxy.image[:large]).to be_present
       expect(proxy.image[:small_preview]).to be_present

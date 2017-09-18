@@ -29,6 +29,7 @@ class Book < ApplicationRecord
 
       def process!(options, proxy:, image:, **)
         proxy.image(image) do |v|
+          v.process!(:original)
           v.process!(:large)         { |job| job.thumb('300x').encode('png') }
           v.process!(:small)         { |job| job.thumb('100x').encode('png') }
           v.process!(:large_preview) { |job| job.thumb('300x450#').encode('png') }

@@ -44,6 +44,7 @@ class User < ApplicationRecord
 
       def process!(options, proxy:, image:, **)
         proxy.image(image) do |v|
+          v.process!(:original)
           v.process!(:large) { |job| job.thumb('300x300#').encode('png') }
           v.process!(:small) { |job| job.thumb('44x44#').encode('png') }
           v.process!(:tiny)  { |job| job.thumb('20x20#').encode('png') }
