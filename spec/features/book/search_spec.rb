@@ -23,7 +23,7 @@ RSpec.describe 'Search books', type: :feature do
     end
 
     # check results
-    expect(page).to have_selector('a.thumbnail', count: 1)
+    expect(page).to have_selector('a.thumbnail', minimum: 1)
     expect(page).to have_selector('a.thumbnail figcaption', text: sample.title)
 
     # check navigation and enter search term
@@ -38,5 +38,16 @@ RSpec.describe 'Search books', type: :feature do
 
     # check results
     expect(page).to have_selector('a.thumbnail', count: 3)
+
+    # check navigation and enter search term
+    expect(page).to have_selector('.navbar .navbar-form')
+
+    within('.navbar .navbar-form') do
+      fill_in('q', with: '')
+      click_button(class: 'btn')
+    end
+
+    # check results
+    expect(page).to have_content("We couldn't find any books")
   end
 end
