@@ -24,11 +24,11 @@ module Bookie
       end
 
       def next_page
-        (current_page < total_pages || out_of_range?) ? current_page + 1 : nil
+        (current_page < total_pages && !out_of_range?) ? current_page + 1 : nil
       end
 
       def prev_page
-        (current_page > 1 || out_of_range?) ? current_page - 1 : nil
+        (current_page > 1 && !out_of_range?) ? current_page - 1 : nil
       end
 
       def first_page?
