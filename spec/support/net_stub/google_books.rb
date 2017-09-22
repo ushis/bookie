@@ -46,14 +46,14 @@ module NetStub
     end
 
     def random_items
-      rand(1..3).times.map { |_| random_item }
+      Array.new(rand(1..3)) { |_| random_item }
     end
 
     def random_item
       {
         isbn: isbn,
         title: Factory::Book.title,
-        authors: rand(1..3).times.map { |_| Factory::Book.authors },
+        authors: Array.new(rand(1..3)) { |_| Factory::Book.authors },
       }
     end
   end

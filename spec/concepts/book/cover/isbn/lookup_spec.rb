@@ -7,7 +7,7 @@ RSpec.describe Book::Cover::ISBN::Lookup do
 
   before { NetStub::BigBookSearch.stub_request(isbn, response) }
 
-  let(:response) { 3.times.map { |_| Faker::Internet.url } }
+  let(:response) { Array.new(3) { |_| Faker::Internet.url } }
 
   it 'successfully finds the first url' do
     expect(result).to be_success

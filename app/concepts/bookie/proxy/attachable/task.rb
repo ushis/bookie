@@ -3,7 +3,7 @@ module Bookie
     module Attachable
       class Task
 
-        def initialize(attachment, file, &block)
+        def initialize(attachment, file)
           @job = ::Dragonfly.app.create(file)
           @attachment = attachment
 

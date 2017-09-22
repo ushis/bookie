@@ -19,7 +19,7 @@ module Bookie
       module ClassMethods
 
         def attachable(name)
-          property("#{name}_meta_data", default: Hash.new)
+          property("#{name}_meta_data", default: -> { {} })
 
           define_method(name) { |file=nil, &block|
             attachable(name, file, &block)

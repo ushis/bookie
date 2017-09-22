@@ -1,17 +1,5 @@
-.panel-transparent {
-  background-color: transparent;
-}
-
-.panel-info {
-  .panel-info-icon {
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  .panel-info-message {
-    padding: 10px 0;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+.panel {
+  &.panel-transparent {
+    background-color: transparent;
   }
 }

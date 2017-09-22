@@ -12,6 +12,10 @@ module Bookie
         def show_navigation?
           false
         end
+
+        def body_classes
+          %w(empty)
+        end
       end
     end
   end

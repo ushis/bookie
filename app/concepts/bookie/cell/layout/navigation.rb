@@ -10,11 +10,15 @@ module Bookie
         end
 
         def search_url
-          root_path
+          search_path
         end
 
         def search_query
           context[:q]
+        end
+
+        def search_tab
+          context[:tab]
         end
 
         def show_link_to_lookup?

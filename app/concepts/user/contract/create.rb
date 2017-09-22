@@ -19,13 +19,13 @@ class User < ApplicationRecord
         virtual: true
 
       validation :default do
-        required(:username).filled(format?: /\A[a-z_\-]+\z/)
+        required(:username).filled(format?: /\A[a-z_\-]+\z/, max_size?: 25)
         required(:email).filled(format?: /\A.+@.+\z/)
         required(:password).filled
         required(:password_confirmation).filled
       end
 
-      validation :username  do
+      validation :username do
         configure do
           def unique?(value)
             !User.exists?(username: value)

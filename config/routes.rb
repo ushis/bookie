@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get  '/sign_up', to: 'users#sign_up_form'
   post '/sign_up', to: 'users#sign_up'
 
+  get '/search', to: 'searches#index'
+
   resources :books, only: [:show, :create] do
     collection do
       get  '/lookup', to: 'books#lookup_form'

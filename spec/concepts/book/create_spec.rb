@@ -9,7 +9,7 @@ RSpec.describe Book::Create, type: :operation do
         isbn: isbn,
         title: title,
         authors: authors,
-      }
+      },
     }
   }
 

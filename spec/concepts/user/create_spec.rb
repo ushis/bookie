@@ -10,7 +10,7 @@ RSpec.describe User::Create, type: :operation do
         email: email,
         password: password,
         password_confirmation: password_confirmation,
-      }
+      },
     }
   }
 

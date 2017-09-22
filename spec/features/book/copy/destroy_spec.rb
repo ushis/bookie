@@ -9,6 +9,8 @@ RSpec.describe 'Destroy copy', type: :feature do
 
   before { Book::Copy::Create.({book_id: book.id}, {current_user: user}) }
 
+  before { Bookie::Search.client.indices.refresh(index: 'books') }
+
   before { sign_in(user_factory.username, user_factory.password) }
 
   before { visit('/') }

@@ -2,7 +2,7 @@ require_dependency 'bookie/cell'
 
 class Book < ApplicationRecord
   module Cell
-    class List < Bookie::Cell
+    class Cards < Bookie::Cell
 
       private
 
@@ -10,8 +10,11 @@ class Book < ApplicationRecord
         options.fetch(:books)
       end
 
-      def thumbnail(book)
-        concept('book/cell/thumbnail', book, version: :large_preview)
+      def card(book)
+        concept('book/cell/thumbnail', book, {
+          card: true,
+          version: :small_preview,
+        })
       end
     end
   end

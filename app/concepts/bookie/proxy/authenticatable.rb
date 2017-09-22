@@ -3,7 +3,7 @@ module Bookie
     module Authenticatable
 
       def self.included(base)
-        base.property(:auth_meta_data, default: Hash.new) do
+        base.property(:auth_meta_data, default: -> { {} }) do
           include Disposable::Twin::Property::Struct
           property :password_hash
         end

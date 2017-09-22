@@ -1,9 +1,11 @@
+# rubocop:disable Naming/MethodName
+
 module Bookie
   class Operation < Trailblazer::Operation
 
     module Proxy
       def self.Build(constant)
-        step = -> (operation, options) {
+        step = -> (_operation, options) {
           options['proxy'] = constant.new(options['model'])
         }
 
@@ -11,9 +13,7 @@ module Bookie
       end
 
       def self.Contract(name:'default', constant:nil, builder:nil)
-        builder ||= -> (options, constant:, proxy:, **) {
-          constant.new(proxy)
-        }
+        builder ||= -> (_options, proxy:, **) { constant.new(proxy) }
 
         Operation::Contract::Build({
           name: name,

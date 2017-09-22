@@ -7,7 +7,7 @@ class User < ApplicationRecord
     module Cell
       class Image < Bookie::Cell
 
-        builds do |model, options|
+        builds do |model, _|
           if model.nil?
             Fallback
           else
@@ -36,4 +36,3 @@ class User < ApplicationRecord
     end
   end
 end
-

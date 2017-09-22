@@ -38,10 +38,11 @@ nav.navbar.navbar-inverse.navbar-static-top
               li= link_to_sign_out
 
       == form_tag(search_url, method: :get, class: 'navbar-form') do
+        input type='hidden' name='tab' value=search_tab
         .form-group
           label.sr-only for='q' Search
           .input-group
-            input.form-control type='text' name='q' value=search_query placeholder='Search books...'
+            input.form-control type='text' name='q' value=search_query placeholder='Search Bookie'
             span.input-group-btn
               button.btn.btn-default type='submit'
                 span.sr-only

@@ -6,6 +6,7 @@ class Book < ApplicationRecord
   module Cell
     class Show < Bookie::Cell
       property :title
+      property :authors
 
       private
 
@@ -13,17 +14,13 @@ class Book < ApplicationRecord
         concept('book/cell/cover', model, version: :large)
       end
 
-      def authors
-        "by #{model.authors}" if model.authors.present?
-      end
-
       def show_button_to_create_copy?
-        Book::Copy::Guard::Create.call(current_user: current_user) &&
+        Book::Copy::Guard::Create.(current_user: current_user) &&
           !current_user.books.include?(model)
       end
 
       def button_to_create_copy
-        # FIXME Bookie::Cell::IconButton
+        # FIXME: Bookie::Cell::IconButton
         button_to(copies_path, {
           params: {book_id: model.id},
           class: 'btn btn-success btn-sm',
@@ -34,12 +31,12 @@ class Book < ApplicationRecord
       end
 
       def show_button_to_destroy_copy?
-        Book::Copy::Guard::Destroy.call(current_user: current_user) &&
+        Book::Copy::Guard::Destroy.(current_user: current_user) &&
           current_user.books.include?(model)
       end
 
       def button_to_destroy_copy
-        # FIXME Bookie::Cell::IconButton
+        # FIXME: Bookie::Cell::IconButton
         button_to(copies_path, {
           method: :delete,
           params: {book_id: model.id},

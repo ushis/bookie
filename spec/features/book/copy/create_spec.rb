@@ -7,6 +7,8 @@ RSpec.describe 'Create copy', type: :feature do
 
   let(:user_factory) { Factory::User.new }
 
+  before { Bookie::Search.client.indices.refresh(index: 'books') }
+
   before { sign_in(user_factory.username, user_factory.password) }
 
   before { visit('/') }

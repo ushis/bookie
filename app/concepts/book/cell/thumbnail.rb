@@ -10,8 +10,18 @@ class Book < ApplicationRecord
         book_path(model)
       end
 
+      def classes
+        %w(thumbnail).tap { |classes|
+          classes << 'thumbnail-card' if options[:card]
+        }
+      end
+
       def title
         model.title.truncate(100)
+      end
+
+      def authors
+        model.authors
       end
 
       def cover

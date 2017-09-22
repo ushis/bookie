@@ -12,7 +12,7 @@ class Book < ApplicationRecord
 
         def digits!(options, isbn:, **)
           options['digits'] = isbn.split('').map { |digit|
-            digit.downcase == 'x' ? 10 : Integer(digit)
+            (digit.casecmp('x') == 0) ? 10 : Integer(digit)
           }
         rescue TypeError, ArgumentError
           false

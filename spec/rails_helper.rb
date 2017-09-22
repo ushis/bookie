@@ -2,12 +2,12 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
 # Enable Coveralls on CI builds
-if !ENV['CI'].nil?
+if ENV.fetch('CI', false)
   require 'coveralls'
   Coveralls.wear!('rails')
 end
 
-require File.expand_path('../../config/environment', __FILE__)
+require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 require 'rspec/rails'
@@ -27,11 +27,12 @@ require 'sidekiq/testing'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Disable all remote connections
 WebMock.disable_net_connect!(allow: [
-  -> (uri) { uri.host == 'minio' }
+  -> (uri) { uri.host == URI.parse(ENV.fetch('S3_ENDPOINT')).host },
+  -> (uri) { uri.host == URI.parse(ENV.fetch('ELASTICSEARCH_URL')).host },
 ])
 
 # Inline all background jobs
@@ -55,5 +56,13 @@ RSpec.configure do |config|
 
   config.before(:each) {
     WebMock.reset!
+  }
+
+  config.before(:suite) {
+    Bookie::Search.create_indices(force: true)
+  }
+
+  config.after(:suite) {
+    Bookie::Search.delete_indices
   }
 end
