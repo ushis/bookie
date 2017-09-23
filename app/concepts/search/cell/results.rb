@@ -8,7 +8,7 @@ module Search
 
       builds do |_, options|
         case options[:tab]
-        when 'users'
+        when :users
           Users
         else
           Books

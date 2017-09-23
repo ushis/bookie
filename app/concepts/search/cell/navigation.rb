@@ -15,7 +15,7 @@ module Search
         concept('search/cell/navigation/tab', nil, {
           url: search_path(q: q, tab: :books),
           name: 'Books',
-          active: active == 'books',
+          active: active == :books,
           counter: books_count,
         }).()
       end
@@ -24,7 +24,7 @@ module Search
         concept('search/cell/navigation/tab', nil, {
           url: search_path(q: q, tab: :users),
           name: 'Users',
-          active: active == 'users',
+          active: active == :users,
           counter: users_count,
         }).()
       end

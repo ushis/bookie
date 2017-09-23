@@ -2,7 +2,7 @@ require_dependency 'bookie/operation'
 
 module Search
   class Index < Bookie::Operation
-    TABS = %w(books users)
+    TABS = [:books, :users]
 
     step :q!
     step :tab!
@@ -15,7 +15,7 @@ module Search
     end
 
     def tab!(options, params:, **)
-      options['tab'] = TABS.find { |tab| tab == params[:tab] } || TABS.first
+      options['tab'] = TABS.find { |tab| tab.to_s == params[:tab] } || TABS.first
     end
 
     def page!(options, params:, **)
