@@ -1,20 +1,26 @@
-.row
-  .col-xs-4.col-md-3
-    .thumbnail
-      figure
-        = avatar
+section.section
+  .container
+    .columns
+      .column.is-4-tablet.is-3-desktop
+        .thumbnail.box
+          figure.image
+            = avatar
 
-    h1
-      strong
-        = username
+        h1.title
+          = username
 
-  .col-xs-8.col-md-9
-    ul.nav.nav-tabs.nav-underline
-      li.active
-        a href='#'
-          | Books
-          span.badge<
-            = books_count
+      .column
+        .tabs
+          ul
+            li.is-active
+              a href='#'
+                | Books
+                span.counter
+                  = books_count
 
-    = list_of_books
-    = pagination
+        .columns.is-multiline
+          - books.each do |book|
+            .column.is-6-desktop
+              = concept('book/cell/plate', book)
+
+        = pagination

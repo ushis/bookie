@@ -29,8 +29,6 @@ gem 'octicons_helper'
 gem 'simple_form'
 
 # assets
-gem 'bootstrap-sass'
-gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
 

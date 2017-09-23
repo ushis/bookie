@@ -20,10 +20,6 @@ class User < ApplicationRecord
         books.total_count
       end
 
-      def list_of_books
-        concept('book/cell/thumbnails', nil, books: books)
-      end
-
       def pagination
         concept('bookie/cell/pagination', books, {
           params: {

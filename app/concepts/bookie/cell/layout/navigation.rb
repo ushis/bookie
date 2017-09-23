@@ -6,7 +6,7 @@ module Bookie
         private
 
         def brand
-          link_to('Bookie', root_path, class: 'navbar-brand')
+          link_to('Bookie', root_path, class: 'navbar-item')
         end
 
         def search_url
@@ -26,7 +26,7 @@ module Bookie
         end
 
         def link_to_lookup
-          link_to('Add book', lookup_books_path)
+          link_to('Add book', lookup_books_path, class: 'navbar-item')
         end
 
         def show_link_to_sign_in?
@@ -34,7 +34,7 @@ module Bookie
         end
 
         def link_to_sign_in
-          link_to('Sign in', sign_in_path)
+          link_to('Sign in', sign_in_path, class: 'navbar-item')
         end
 
         def show_user_menu?
@@ -42,11 +42,11 @@ module Bookie
         end
 
         def link_to_profile
-          link_to('Your Profile', user_path(current_user))
+          link_to('Your Profile', user_path(current_user), class: 'navbar-item')
         end
 
         def link_to_sign_out
-          link_to('Sign out', sign_out_path, method: :delete)
+          link_to('Sign out', sign_out_path, method: :delete, class: 'navbar-item')
         end
 
         def username

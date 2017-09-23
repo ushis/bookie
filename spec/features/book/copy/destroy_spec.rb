@@ -17,11 +17,11 @@ RSpec.describe 'Destroy copy', type: :feature do
 
   it 'is possible to destroy a copy' do
     # check navigation and search for isbn
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar form.navbar-form') do
+    within('.navbar form') do
       fill_in('q', with: book.isbn)
-      click_button(class: 'btn')
+      click_button(class: 'button')
     end
 
     # check and click link to book

@@ -12,7 +12,7 @@ module Search
         end
 
         def resource
-          I18n.t(options.fetch(:resource), scope: 'search.resources')
+          I18n.t(options.fetch(:tab), scope: 'search.resources')
         end
 
         def q

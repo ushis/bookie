@@ -4,26 +4,17 @@ module Search
       class Users < Results
 
         def show
-          render :results
+          render(:results)
         end
 
         private
 
-        def results
-          if users.empty?
-            concept('search/cell/results/empty', nil, resource: :users, q: q)
-          else
-            concept('user/cell/cards', nil, users: users)
-          end
+        def models
+          options.fetch(:users)
         end
 
-        def pagination
-          concept('bookie/cell/pagination', users, params: {
-            controller: :searches,
-            action: :index,
-            tab: :users,
-            q: q,
-          })
+        def plate(user)
+          concept('user/cell/plate', user)
         end
       end
     end

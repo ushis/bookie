@@ -6,22 +6,12 @@ class Book < ApplicationRecord
 
       private
 
-      def url_to_book
+      def url
         book_path(model)
-      end
-
-      def classes
-        %w(thumbnail).tap { |classes|
-          classes << 'thumbnail-card' if options[:card]
-        }
       end
 
       def title
         model.title.truncate(100)
-      end
-
-      def authors
-        model.authors
       end
 
       def cover

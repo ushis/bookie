@@ -27,9 +27,9 @@ RSpec.describe 'Create book', type: :feature do
 
   it 'is possible to create a book' do
     # check navigation and navigate to sign in page
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       click_link('Add book')
     end
 
@@ -54,7 +54,7 @@ RSpec.describe 'Create book', type: :feature do
     expect(page).to have_selector('form.new_book')
 
     within('form.new_book') do
-      expect(page).to have_selector('.book_title.has-error')
+      expect(page).to have_selector('.book_title .input.is-danger')
 
       fill_in('Title', with: title)
       click_button('Save book')

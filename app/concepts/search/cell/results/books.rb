@@ -4,26 +4,17 @@ module Search
       class Books < Results
 
         def show
-          render :results
+          render(:results)
         end
 
         private
 
-        def results
-          if books.empty?
-            concept('search/cell/results/empty', nil, resource: :books, q: q)
-          else
-            concept('book/cell/cards', nil, books: books)
-          end
+        def models
+          options.fetch(:books)
         end
 
-        def pagination
-          concept('bookie/cell/pagination', books, params: {
-            controller: :searches,
-            action: :index,
-            tab: :books,
-            q: q,
-          })
+        def plate(book)
+          concept('book/cell/plate', book)
         end
       end
     end

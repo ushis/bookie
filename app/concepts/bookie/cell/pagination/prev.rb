@@ -8,6 +8,10 @@ module Bookie
         def text
           'Previous Page'
         end
+
+        def classes
+          %w(pagination-previous)
+        end
       end
     end
   end

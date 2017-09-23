@@ -5,9 +5,9 @@ module FeatureHelper
     visit('/')
 
     # check navigation and navigate to sign in page
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       click_link('Sign in')
     end
 
@@ -21,9 +21,9 @@ module FeatureHelper
     end
 
     # check path and navigation
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       expect(page).to have_content(username)
     end
 

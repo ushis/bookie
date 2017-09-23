@@ -9,24 +9,29 @@ module Search
       builds do |_, options|
         case options[:tab]
         when :users
-          Users
+          options[:users].empty? ? Empty : Users
         else
-          Books
+          options[:books].empty? ? Empty : Books
         end
       end
 
       private
 
-      def books
-        options.fetch(:books)
-      end
-
-      def users
-        options.fetch(:users)
-      end
-
       def q
         options.fetch(:q)
+      end
+
+      def tab
+        options.fetch(:tab)
+      end
+
+      def pagination
+        concept('bookie/cell/pagination', models, params: {
+          controller: :searches,
+          action: :index,
+          tab: tab,
+          q: q,
+        })
       end
     end
   end
