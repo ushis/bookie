@@ -13,9 +13,9 @@ RSpec.describe 'Sign in', type: :feature do
 
   it 'is possible to navigate to the sign in form and sign in' do
     # check navigation and navigate to sign in page
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       click_link('Sign in')
     end
 
@@ -29,7 +29,7 @@ RSpec.describe 'Sign in', type: :feature do
     end
 
     # check alert
-    expect(page).to have_selector('.alert.alert-danger')
+    expect(page).to have_selector('.notification.is-danger')
 
     # check and fill form
     expect(page).to have_selector('form.new_user')
@@ -41,9 +41,9 @@ RSpec.describe 'Sign in', type: :feature do
 
     # check path and navigation
     expect(page).to have_current_path(root_path)
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       expect(page).to have_content(username)
     end
   end

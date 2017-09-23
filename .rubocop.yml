@@ -7,6 +7,9 @@ AllCops:
 Layout/AlignParameters:
   EnforcedStyle: 'with_fixed_indentation'
 
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
 Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
@@ -89,7 +92,7 @@ Style/NumericPredicate:
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
-    default: '()'
+    default: '{}'
     '%w': '()'
 
 Style/StringLiterals:

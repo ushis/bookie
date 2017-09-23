@@ -14,6 +14,7 @@ RUN apk add --no-cache \
   libffi-dev \
   libxml2-dev \
   nodejs \
+  nodejs-npm \
   postgresql-dev \
   tzdata \
   xz-dev \
@@ -33,6 +34,9 @@ ENV BUNDLE_JOBS=4 \
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+COPY package.json ./
+RUN npm install
 
 COPY . ./
 RUN chown -R app:app /home/app

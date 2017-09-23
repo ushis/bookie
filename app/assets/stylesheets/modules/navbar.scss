@@ -1,42 +1,8 @@
 .navbar {
-  &.navbar-inverse {
-    .navbar-nav {
-      .avatar {
-        img {
-          border-radius: 3px;
-          vertical-align: bottom;
-        }
-      }
-    }
-  }
-
-  .navbar-form {
-    &:last-child {
-      margin-bottom: 0;
-      border-bottom: 0 none transparent;
-    }
-
-    .form-group {
-      display: inline;
-
-      .input-group {
-        display: table;
-
-        .input-group-btn {
-          width: 1%;
-        }
-      }
-    }
-  }
-}
-
-@media(min-width: 768px) {
-  .navbar {
-    .navbar-form  {
-      .form-group {
-        .input-group {
-          padding: 0 15px;
-        }
+  .navbar-menu {
+    .navbar-item {
+      img {
+        border-radius: $radius-small;
       }
     }
   }

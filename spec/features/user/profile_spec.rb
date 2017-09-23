@@ -9,9 +9,9 @@ RSpec.describe 'Visit profile', type: :feature do
 
   it 'is possible to visit the profile' do
     # check navigation and visit profile
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       click_link('Your Profile')
     end
 

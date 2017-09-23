@@ -15,10 +15,18 @@ RSpec.describe Book::Cover::Lookup do
 
     Book::Cover::Proxy::Default.new(result['model']).tap do |proxy|
       expect(proxy.image[:original]).to be_present
-      expect(proxy.image[:small]).to be_present
-      expect(proxy.image[:large]).to be_present
-      expect(proxy.image[:small_preview]).to be_present
-      expect(proxy.image[:large_preview]).to be_present
+      expect(proxy.image[:small].fetch.width).to eq(100)
+      expect(proxy.image[:large].fetch.width).to eq(300)
+
+      proxy.image[:small_preview].fetch do |version|
+        expect(version.width).to eq(100)
+        expect(version.height).to eq(150)
+      end
+
+      proxy.image[:large_preview].fetch do |version|
+        expect(version.width).to eq(300)
+        expect(version.height).to eq(450)
+      end
     end
   end
 

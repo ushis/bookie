@@ -13,9 +13,21 @@ RSpec.describe User::Avatar::Lookup do
 
     User::Avatar::Proxy::Default.new(result['model']).tap do |proxy|
       expect(proxy.image[:original]).to be_present
-      expect(proxy.image[:large]).to be_present
-      expect(proxy.image[:small]).to be_present
-      expect(proxy.image[:tiny]).to be_present
+
+      proxy.image[:large].fetch.tap do |version|
+        expect(version.width).to eq(300)
+        expect(version.height).to eq(300)
+      end
+
+      proxy.image[:small].fetch.tap do |version|
+        expect(version.width).to eq(44)
+        expect(version.height).to eq(44)
+      end
+
+      proxy.image[:tiny].fetch.tap do |version|
+        expect(version.width).to eq(20)
+        expect(version.height).to eq(20)
+      end
     end
   end
 

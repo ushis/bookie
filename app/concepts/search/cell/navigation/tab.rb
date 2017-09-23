@@ -4,11 +4,9 @@ module Search
       class Tab < Bookie::Cell
 
         def show
-          content_tag(:li, class: classes) do
-            link_to(url) do
-              concat(name)
-              concat(content_tag(:span, counter, class: 'badge'))
-            end
+          link_to(url, class: classes) do
+            concat(name)
+            concat(content_tag(:span, counter, class: 'counter'))
           end
         end
 
@@ -19,7 +17,9 @@ module Search
         end
 
         def classes
-          options.fetch(:active) ? %w(active) : []
+          %w(navbar-item is-tab).tap { |classes|
+            classes << 'is-active' if options.fetch(:active)
+          }
         end
 
         def name

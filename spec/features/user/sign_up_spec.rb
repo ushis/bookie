@@ -9,9 +9,9 @@ RSpec.describe 'Sign up', type: :feature do
 
   it 'is possible to navigate to the sign up form and sign up' do
     # check navigation and navigate to sign in page
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       click_link('Sign in')
     end
 
@@ -35,7 +35,7 @@ RSpec.describe 'Sign up', type: :feature do
     expect(page).to have_selector('form.new_user')
 
     within('form.new_user') do
-      expect(page).to have_selector('.user_password_confirmation.has-error')
+      expect(page).to have_selector('.user_password_confirmation .input.is-danger')
       fill_in('Password', with: factory.password)
       fill_in('Repeat your password', with: factory.password_confirmation)
       click_button('Create an account')
@@ -43,9 +43,9 @@ RSpec.describe 'Sign up', type: :feature do
 
     # check path and navigation
     expect(page).to have_current_path(root_path)
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       expect(page).to have_content(factory.username)
     end
   end

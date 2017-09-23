@@ -1,2 +1,8 @@
-= thumbnails
-= pagination
+section.section
+  .container
+    .columns.is-multiline
+      - books.each do |book|
+        .column.is-3-tablet.is-2-desktop
+          = thumbnail(book)
+
+    = pagination

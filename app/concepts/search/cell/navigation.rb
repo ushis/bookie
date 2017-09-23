@@ -3,9 +3,13 @@ module Search
     class Navigation < Bookie::Cell
 
       def show
-        tag.ul(class: %w(nav nav-tabs nav-underline)) do
-          concat(books_tab)
-          concat(users_tab)
+        tag.nav(class: 'navbar has-shadow') do
+          tag.div(class: 'container') do
+            tag.div(class: 'navbar-tabs') do
+              concat(books_tab)
+              concat(users_tab)
+            end
+          end
         end
       end
 

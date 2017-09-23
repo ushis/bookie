@@ -1,5 +1,7 @@
-.well.well-info
-  .well-info-icon
-    = octicon('search', width: 32)
-  .well-info-message
-    = message
+.message.is-large.has-text-centered
+  .message-body
+    p
+      = octicon('search', width: 40)
+    p.is-size-5
+      strong
+        = message

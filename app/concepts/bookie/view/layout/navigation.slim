@@ -1,50 +1,41 @@
-nav.navbar.navbar-inverse.navbar-static-top
+nav.navbar.is-dark role='navigation' aria-label='main navigation'
   .container
-    .navbar-header
-      button.navbar-toggle.collapsed type='button' data-toggle='collapse' data-target='#navbar-collapse'
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
+    .navbar-brand
       = brand
+      .navbar-burger.burger
+        span
+        span
+        span
 
-    .collapse.navbar-collapse#navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        - if show_link_to_lookup?
-          li.dropdown
-            a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'
-              span.sr-only Add
-              => octicon('plus')
-              span.caret
-            ul.dropdown-menu
-              li= link_to_lookup
+    .navbar-menu
+      .navbar-start
+        .navbar-item
+          == form_tag(search_url, method: :get) do
+            input type='hidden' name='tab' value=search_tab
+            .field.has-addons
+              .control
+                input.input.is-normal type='text' name='q' value=search_query placeholder='Search Bookie'
+              .control
+                button.button.is-normal type='submit'
+                  = octicon('search', width: 18)
 
+      .navbar-end
         - if show_link_to_sign_in?
-          li= link_to_sign_in
+          = link_to_sign_in
+
+        - if show_link_to_lookup?
+          = link_to_lookup
 
         - if show_user_menu?
-          li.dropdown
-            a.dropdown-toggle href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'
-              span.avatar
-                => avatar
-              span.caret
-            ul.dropdown-menu
-              li
-                span.text
+          .navbar-item.has-dropdown.is-hoverable
+            .navbar-link
+              = avatar
+            .navbar-dropdown.is-right
+              .navbar-item
+                .navbar-content
                   | Signed in as
-                  strong=< username
-              li.divider role='separator'
-              li= link_to_profile
-              li= link_to_sign_out
-
-      == form_tag(search_url, method: :get, class: 'navbar-form') do
-        input type='hidden' name='tab' value=search_tab
-        .form-group
-          label.sr-only for='q' Search
-          .input-group
-            input.form-control type='text' name='q' value=search_query placeholder='Search Bookie'
-            span.input-group-btn
-              button.btn.btn-default type='submit'
-                span.sr-only
-                  | Search
-                span.glyphicon.glyphicon-search
+                  strong<
+                    = username
+              hr.navbar-divider
+              = link_to_profile
+              = link_to_sign_out

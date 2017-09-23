@@ -31,9 +31,9 @@ RSpec.describe 'Lookup book', type: :feature do
 
   it 'is possible to lookup a book' do
     # check navigation and navigate to sign in page
-    expect(page).to have_selector('nav.navbar')
+    expect(page).to have_selector('.navbar')
 
-    within('nav.navbar') do
+    within('.navbar') do
       click_link('Add book')
     end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Lookup book', type: :feature do
     expect(page).to have_selector('form.new_book')
 
     within('form.new_book') do
-      expect(page).to have_selector('.book_isbn.has-error')
+      expect(page).to have_selector('.book_isbn .input.is-danger')
 
       fill_in('ISBN', with: isbn)
       click_button('Lookup')

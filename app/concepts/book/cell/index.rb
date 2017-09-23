@@ -10,8 +10,8 @@ class Book < ApplicationRecord
         options.fetch(:books)
       end
 
-      def thumbnails
-        concept('book/cell/thumbnails', nil, books: books)
+      def thumbnail(book)
+        concept('book/cell/thumbnail', book, version: :large_preview)
       end
 
       def pagination

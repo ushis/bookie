@@ -19,7 +19,7 @@ class Book < ApplicationRecord
       end
 
       def alt
-        "Cover of #{model.title}"
+        %{Cover of "#{model.title}"}
       end
     end
   end

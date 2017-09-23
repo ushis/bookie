@@ -23,9 +23,9 @@ class Book < ApplicationRecord
         # FIXME: Bookie::Cell::IconButton
         button_to(copies_path, {
           params: {book_id: model.id},
-          class: 'btn btn-success btn-sm',
+          class: 'button is-success is-small',
         }) {
-          concat(octicon(:check, height: 14))
+          concat(octicon(:check, class: 'icon'))
           concat(content_tag(:span, 'I have this book'))
         }
       end
@@ -40,9 +40,9 @@ class Book < ApplicationRecord
         button_to(copies_path, {
           method: :delete,
           params: {book_id: model.id},
-          class: 'btn btn-danger btn-sm',
+          class: 'button is-danger is-small',
         }) {
-          concat(octicon(:x, height: 14))
+          concat(octicon(:x, class: 'icon'))
           concat(content_tag(:span, 'I lost it'))
         }
       end

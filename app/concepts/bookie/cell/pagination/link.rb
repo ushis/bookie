@@ -3,6 +3,10 @@ module Bookie
     class Pagination < Cell
       class Link < Cell
 
+        def show
+          link_to(text, url, class: classes, disabled: disabled?)
+        end
+
         private
 
         def url
@@ -15,12 +19,6 @@ module Bookie
 
         def params
           options.fetch(:params)
-        end
-
-        def classes
-          %w(btn btn-default).tap { |classes|
-            classes << 'disabled' if disabled?
-          }
         end
 
         def disabled?

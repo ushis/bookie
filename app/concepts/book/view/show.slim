@@ -1,16 +1,20 @@
-.row
-  .col-xs-12.col-sm-4.col-md-3
-    .thumbnail
-      figure
-        = cover
+section.section
+  .container
+    .columns
+      .column.is-4-tablet.is-3-desktop
+        .thumbnail.box
+          figure.image
+            = cover
 
-    - if show_button_to_create_copy?
-      = button_to_create_copy
+        - if show_button_to_create_copy?
+          = button_to_create_copy
 
-    - if show_button_to_destroy_copy?
-      = button_to_destroy_copy
+        - if show_button_to_destroy_copy?
+          = button_to_destroy_copy
 
-  .col-xs-12.col-sm-8.col-md-9
-    h1= title
+      .column
+        h1.title
+          = title
 
-    p= authors
+        p.subtitle
+          = authors

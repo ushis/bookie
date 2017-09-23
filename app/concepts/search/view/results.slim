@@ -1,2 +1,6 @@
-= results
+.columns.is-multiline
+  - models.each do |model|
+    .column.is-6-tablet.is-4-desktop
+      = plate(model)
+
 = pagination
