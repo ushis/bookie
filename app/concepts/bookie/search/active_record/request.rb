@@ -2,36 +2,36 @@ module Bookie
   class Search
     module ActiveRecord
       class Request
+        delegate_missing_to :_scope
 
         def initialize(scope, query)
           @scope = scope
           @query = query
         end
 
-        def method_missing(method_name, *arguments, &block)
-          if _query.respond_to?(method_name)
-            _query.send(method_name, *arguments, &block)
-          elsif _scope.respond_to?(method_name)
-            _scope.send(method_name, *arguments, &block)
-          else
-            super
-          end
-        end
-
-        def respond_to_missing?(method_name, include_all=false)
-          _query.respond_to?(method_name) ||
-            _scope.respond_to?(method_name) ||
-            super
-        end
-
         private
 
-        def _query
-          @query
+        def _scope
+          @scope
+            .where(id: @query.ids)
+            .limit(@query.per)
+            .order_as_specified(id: @query.ids)
+            .extending(_scope_extension(@query))
         end
 
-        def _scope
-          @scope.where(id: ids).limit(_query.per).order_as_specified(id: ids)
+        def _scope_extension(query)
+          Module.new do
+            [
+              :total_count,
+              :total_pages,
+              :current_page,
+              :next_page,
+              :prev_page,
+              :first_page?,
+              :last_page?,
+              :out_of_range?,
+            ].each { |method| define_method(method) { query.send(method) } }
+          end
         end
       end
     end
