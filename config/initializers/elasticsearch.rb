@@ -17,7 +17,7 @@ module Elasticsearch
       end
 
       def raw
-        YAML.load(yaml)
+        YAML.safe_load(yaml, [], [], true)
       end
 
       def yaml
