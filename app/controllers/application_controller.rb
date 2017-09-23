@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def current_session
     @current_session ||= User::Session::Find.({
-      id: cookies.permanent.encrypted[:session_id]
+      id: cookies.permanent.encrypted[:session_id],
     })['model']
   end
 end

@@ -13,6 +13,10 @@ module Bookie
       def show_navigation?
         true
       end
+
+      def body_classes
+        []
+      end
     end
   end
 end

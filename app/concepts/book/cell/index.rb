@@ -1,17 +1,8 @@
-require_dependency 'book/cell/index/empty'
 require_dependency 'bookie/cell'
 
 class Book < ApplicationRecord
   module Cell
     class Index < Bookie::Cell
-
-      builds do |_, options|
-        if options.fetch(:books).empty?
-          Empty
-        else
-          Index
-        end
-      end
 
       private
 
@@ -19,8 +10,8 @@ class Book < ApplicationRecord
         options.fetch(:books)
       end
 
-      def list_of_books
-        concept('book/cell/list', nil, books: books)
+      def thumbnails
+        concept('book/cell/thumbnails', nil, books: books)
       end
 
       def pagination
@@ -29,7 +20,7 @@ class Book < ApplicationRecord
             q: options[:q],
             action: :index,
             controller: :books,
-          }
+          },
         })
       end
     end

@@ -6,6 +6,7 @@ before_install:
   - docker network create bookie
   - docker run -d --network bookie --name postgres -e POSTGRES_PASSWORD=secret -e POSTGRES_DB=test postgres:9.6
   - docker run -d --network bookie --name minio -e MINIO_ACCESS_KEY=accesskey -e MINIO_SECRET_KEY=secretkey minio/minio server /srv
+  - docker run -d --network bookie --name elasticsearch -e discovery.type=single-node docker.elastic.co/elasticsearch/elasticsearch:5.6.1
 
 install:
   - docker build -t bookie .
@@ -13,3 +14,4 @@ install:
 script:
   - env | grep -P '^(TRAVIS|CI)' >> .travis.env
   - docker run --network bookie --env-file .travis.env bookie rake
+  - docker run --network bookie --env-file .travis.env bookie rubocop

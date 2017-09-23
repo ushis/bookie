@@ -8,7 +8,7 @@ RSpec.describe User::SignIn, type: :operation do
       user: {
         login: login,
         password: password,
-      }
+      },
     }
   }
 

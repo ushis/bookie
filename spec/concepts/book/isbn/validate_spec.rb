@@ -57,8 +57,16 @@ RSpec.describe Book::ISBN::Validate, type: :operation do
     end
   end
 
-  context 'with characters' do
+  context 'with 13 characters' do
     let(:isbn) { 'invalid__isbn' }
+
+    it 'fails' do
+      expect(result).to be_failure
+    end
+  end
+
+  context 'with 10 characters' do
+    let(:isbn) { 'no____isbn' }
 
     it 'fails' do
       expect(result).to be_failure

@@ -1,0 +1,109 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  CacheRootDirectory: 'tmp/cache'
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/AlignParameters:
+  EnforcedStyle: 'with_fixed_indentation'
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/IndentArray:
+  EnforcedStyle: 'consistent'
+
+Layout/IndentHash:
+  EnforcedStyle: 'consistent'
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: 'indented'
+
+# We want spaces after colons in hashes, but not after keyword parameters.
+Layout/SpaceAfterColon:
+  Enabled: false
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: 'no_space'
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: 'require_space'
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: 'no_space'
+
+# DISCUSS: enable?
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+# DISCUSS: 79?
+Metrics/LineLength:
+  Max: 99
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
+Rails/Blank:
+  NilOrEmpty: true
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+# We want braces if there are multiple hash parameters or the parameter is a
+# multline hash.
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: 'literal'
+
+Style/LambdaCall:
+  EnforcedStyle: 'braces'
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/NumericPredicate:
+  EnforcedStyle: 'comparison'
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: '()'
+    '%w': '()'
+
+Style/StringLiterals:
+  EnforcedStyle: 'single_quotes'
+  ConsistentQuotesInMultiline: true
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/TernaryParentheses:
+  EnforcedStyle: 'require_parentheses_when_complex'
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/WordArray:
+  Enabled: false

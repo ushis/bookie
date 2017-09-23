@@ -17,6 +17,10 @@
       color: #fff;
       background-color: rgba(0, 0, 0, 0.9);
       transition: all 0.4s ease;
+
+      .info {
+        display: none;
+      }
     }
   }
 
@@ -26,6 +30,59 @@
     figure {
       .caption {
         top: 0;
+      }
+    }
+  }
+
+  &.thumbnail-card {
+    figure {
+      border-radius: 0;
+
+      img {
+        float: left;
+        width: auto;
+        height: 100px;
+        margin-right: 12px;
+        border-radius: 4px;
+      }
+
+      .caption {
+        position: static;
+        padding: 6px;
+        color: #333;
+        background-color: transparent;
+
+        > div {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        .title {
+          font-weight: 600;
+          font-size: 16px;
+          margin-bottom: 2px;
+        }
+
+        .info {
+          display: block;
+          font-size: 13px;
+        }
+      }
+    }
+
+    &.thumbnail-card-sm {
+      figure {
+        img {
+          height: 44px;
+        }
+
+        .caption {
+          .title {
+            line-height: 32px;
+            margin-bottom: 0;
+          }
+        }
       }
     }
   }

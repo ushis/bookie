@@ -12,22 +12,23 @@ class Book < ApplicationRecord
     step self::Contract::Persist(method: :sync, name: :lookup)
 
     step :find!
+    step :cover!
 
-    step -> (options, proxy:, **) {
-      Cover::Worker::Lookup.perform_async(proxy.isbn)
-    }
-
-    step self::Nested(ISBN::Lookup, input: -> (options, mutable_data:, **) {
+    step self::Nested(ISBN::Lookup, input: -> (_options, mutable_data:, **) {
       {isbn: mutable_data['proxy'].isbn}
     })
 
-    step self::Nested(Book::Create, input: -> (options, mutable_data:, runtime_data:, **) {
+    step self::Nested(Book::Create, input: -> (_options, mutable_data:, runtime_data:, **) {
       runtime_data.merge({'params' => {book: mutable_data['attributes']}})
     })
 
     def find!(options, proxy:, **)
       options['model'] = Book.find_by(isbn: proxy.isbn)
       options['model'].present? ? Railway.pass_fast! : true
+    end
+
+    def cover!(options, proxy:, **)
+      Cover::Worker::Lookup.perform_async(proxy.isbn)
     end
   end
 end

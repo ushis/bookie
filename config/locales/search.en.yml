@@ -1,0 +1,7 @@
+en:
+  search:
+    resources:
+      books: 'books'
+      users: 'users'
+    results:
+      empty: "We couldn't find any %{resource} matching '%{q}'"

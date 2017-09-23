@@ -24,7 +24,7 @@ module Bookie
         end
 
         def disabled?
-          !!options[:disabled]
+          options[:disabled]
         end
       end
     end

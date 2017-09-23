@@ -1,0 +1,64 @@
+default: &default
+  client:
+    url: <%= ENV['ELASTICSEARCH_URL'] %>
+  indices:
+    books:
+      settings:
+        analysis:
+          analyzer:
+            isbn:
+              tokenizer: 'isbn'
+          tokenizer:
+            isbn:
+              type: 'ngram'
+              min_gram: 3
+              max_gram: 13
+              token_chars:
+                - 'digit'
+      mappings:
+        book:
+          properties:
+            isbn:
+              type: 'text'
+              analyzer: 'isbn'
+            title:
+              type: 'text'
+            authors:
+              type: 'text'
+    users:
+      settings:
+        analysis:
+          analyzer:
+            username:
+              tokenizer: 'username'
+              filter:
+                - 'lowercase'
+          tokenizer:
+            username:
+              type: 'edge_ngram'
+              min_gram: 1
+              max_gram: 25,
+              token_chars:
+                - 'letter'
+                - 'digit'
+                - 'punctuation'
+                - 'symbol'
+      mappings:
+        user:
+          properties:
+            username:
+              type: 'text'
+              analyzer: 'username'
+
+development:
+  <<: *default
+  client:
+    url: <%= ENV['ELASTICSEARCH_DEVELOPMENT_URL'] %>
+
+test:
+  <<: *default
+  client:
+    url: <%= ENV['ELASTICSEARCH_TEST_URL'] %>
+
+production:
+  <<: *default

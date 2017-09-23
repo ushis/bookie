@@ -22,7 +22,7 @@ class Factory
       properties.push(name)
 
       define_singleton_method(name) {
-        func.call
+        func.()
       }
 
       define_method(name) {
@@ -74,7 +74,7 @@ class Factory
 
   def dependencies
     (self.class.dependencies.keys - @dependencies.keys).map { |name|
-      [name, self.class.dependencies[name].call]
+      [name, self.class.dependencies[name].()]
     }.to_h.merge(@dependencies)
   end
 

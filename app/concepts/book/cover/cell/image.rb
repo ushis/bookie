@@ -7,7 +7,7 @@ class Book < ApplicationRecord
     module Cell
       class Image < Bookie::Cell
 
-        builds do |model, options|
+        builds do |model, _|
           case model
           when nil
             Fallback

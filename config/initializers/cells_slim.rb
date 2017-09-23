@@ -3,7 +3,7 @@
 # See https://github.com/trailblazer/cells-slim
 module Cell
   module Slim
-    def template_options_for(options)
+    def template_options_for(_options)
       {
         buffer: '@output_buffer',
         suffix: 'slim',

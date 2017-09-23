@@ -27,7 +27,7 @@ module NetStub
       Base64.decode64(
         "/9j/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8M\n" \
         "CgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/yQALCAABAAEBAREA/8wABgAQ\n" \
-        "EAX/2gAIAQEAAD8A0s8g/9k="
+        "EAX/2gAIAQEAAD8A0s8g/9k=\n"
       )
     end
   end

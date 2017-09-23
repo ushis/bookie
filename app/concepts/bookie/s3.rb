@@ -7,7 +7,7 @@ module Bookie
       create_bucket
     end
 
-    def write(content, options={})
+    def write(content, _options={})
       uid = SecureRandom.uuid
 
       s3.put_object({
@@ -16,7 +16,7 @@ module Bookie
         key: uid,
         body: content.file,
         metadata: content.meta.merge({
-          mime_type: content.mime_type
+          mime_type: content.mime_type,
         }),
       })
 
@@ -37,7 +37,7 @@ module Bookie
       false
     end
 
-    def url_for(uid, options={})
+    def url_for(uid, _options={})
       "#{@options.fetch(:url_host)}/#{bucket}/#{uid}"
     end
 
@@ -61,6 +61,7 @@ module Bookie
         acl: acl,
       })
     rescue Aws::S3::Errors::BucketAlreadyOwnedByYou
+      false
     end
   end
 end

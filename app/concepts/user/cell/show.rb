@@ -16,12 +16,12 @@ class User < ApplicationRecord
       end
 
       def books_count
-        # FIXME use counter cache
+        # FIXME: use counter cache
         books.total_count
       end
 
       def list_of_books
-        concept('book/cell/list', nil, books: books)
+        concept('book/cell/thumbnails', nil, books: books)
       end
 
       def pagination

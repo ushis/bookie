@@ -37,9 +37,7 @@ module NetStub
     end
 
     def empty_body
-      {
-        stat: 'unknownId'
-      }.to_json
+      {stat: 'unknownId'}.to_json
     end
 
     def body_with_items
@@ -56,7 +54,7 @@ module NetStub
     end
 
     def random_items
-      (1..3).sample.times.map { |_| random_item }
+      Array.new(rand(1..3)) { |_| random_item }
     end
 
     def random_item

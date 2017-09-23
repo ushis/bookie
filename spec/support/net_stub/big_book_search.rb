@@ -41,7 +41,7 @@ module NetStub
     end
 
     def random_urls
-      rand(1..3).times.map { |_| random_url }
+      Array.new(rand(1..3)) { |_| random_url }
     end
 
     def random_url

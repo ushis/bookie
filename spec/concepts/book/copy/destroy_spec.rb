@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Book::Copy::Destroy, type: :operation do
   let(:result) { Book::Copy::Destroy.(params, dependencies) }
 
-  let(:params) { {book_id: book_id } }
+  let(:params) { {book_id: book_id} }
 
   let(:book_id) { book.id }
 
