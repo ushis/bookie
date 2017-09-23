@@ -5,7 +5,8 @@ volumes:
   postgres:
   redis:
   minio:
-  elasticsearch:
+  elasticsearch_development:
+  elasticsearch_test:
 
 services:
   app: &bookie
@@ -18,6 +19,8 @@ services:
     depends_on:
       - postgres
       - minio
+      - elasticsearch_development
+      - elasticsearch_test
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_USER: postgres
@@ -29,7 +32,8 @@ services:
       S3_ENDPOINT: http://minio:9000
       S3_ACCESS_KEY: accesskey
       S3_SECRET_KEY: secretkey
-      ELASTICSEARCH_URL: http://elastic:changeme@elasticsearch:9200
+      ELASTICSEARCH_DEVELOPMENT_URL: http://elastic:changeme@elasticsearch_development:9200
+      ELASTICSEARCH_TEST_URL: http://elastic:changeme@elasticsearch_test:9200
 
   sidekiq:
     <<: *bookie
@@ -63,12 +67,19 @@ services:
     ports:
       - 9000:9000
 
-  elasticsearch:
+  elasticsearch_development: &elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.1
+    mem_limit: 1g
     environment:
       discovery.type: single-node
+      ES_JAVA_OPTS: -Xms500m -Xmx500m
     volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
+      - elasticsearch_development:/usr/share/elasticsearch/data
+
+  elasticsearch_test:
+    <<: *elasticsearch
+    volumes:
+      - elasticsearch_test:/usr/share/elasticsearch/data
 
   maildev:
     image: djfarrelly/maildev

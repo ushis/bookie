@@ -5,7 +5,7 @@ module Bookie
     class << self
 
       def client
-        @client ||= Elasticsearch::Client.new(config.client)
+        @client ||= Elasticsearch::Client.new(config[:client])
       end
 
       def query(*args)
@@ -17,18 +17,18 @@ module Bookie
       end
 
       def create_indices(force:false)
-        config.indices.each_key { |index|
+        config[:indices].each_key { |index|
           create_index(index: index, force: force)
         }
       end
 
       def delete_indices
-        config.indices.each_key { |index| delete_index(index: index) }
+        config[:indices].each_key { |index| delete_index(index: index) }
       end
 
       def create_index(index:, force:false)
         delete_index(index: index) if force
-        client.indices.create(index: index, body: config.indices[index])
+        client.indices.create(index: index, body: config[:indices][index])
       end
 
       def delete_index(index:)

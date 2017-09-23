@@ -32,7 +32,7 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 # Disable all remote connections
 WebMock.disable_net_connect!(allow: [
   -> (uri) { uri.host == URI.parse(ENV.fetch('S3_ENDPOINT')).host },
-  -> (uri) { uri.host == URI.parse(ENV.fetch('ELASTICSEARCH_URL')).host },
+  -> (uri) { uri.host == URI.parse(ENV.fetch('ELASTICSEARCH_TEST_URL')).host },
 ])
 
 # Inline all background jobs
