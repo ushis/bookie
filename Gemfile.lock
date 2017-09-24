@@ -167,10 +167,6 @@ GEM
       activerecord
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
@@ -278,7 +274,6 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.3)
-    ruby_dep (1.5.0)
     safe_yaml (1.0.4)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
@@ -372,7 +367,6 @@ DEPENDENCIES
   elasticsearch
   faker
   kaminari
-  listen
   octicons_helper
   pg
   puma

@@ -32,10 +32,6 @@ gem 'simple_form'
 gem 'sass-rails'
 gem 'uglifier'
 
-group :development do
-  gem 'listen'
-end
-
 group :test do
   gem 'capybara'
   gem 'coveralls', require: false
