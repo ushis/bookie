@@ -6,4 +6,27 @@
       }
     }
   }
+
+  &.is-dark {
+    .field {
+      .control {
+        .input,
+        .button {
+          color: $white;
+          background-color: $grey-dark;
+          border-color: $grey-dark;
+          box-shadow: none;
+        }
+
+        .button {
+          color: $grey;
+
+          &:hover,
+          &:focus {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
 }
