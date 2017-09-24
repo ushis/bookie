@@ -25,7 +25,7 @@ class Book < ApplicationRecord
           params: {book_id: model.id},
           class: 'button is-success is-small',
         }) {
-          concat(octicon(:check, class: 'icon'))
+          concat(octicon(:check))
           concat(content_tag(:span, 'I have this book'))
         }
       end
@@ -42,7 +42,7 @@ class Book < ApplicationRecord
           params: {book_id: model.id},
           class: 'button is-danger is-small',
         }) {
-          concat(octicon(:x, class: 'icon'))
+          concat(octicon(:x))
           concat(content_tag(:span, 'I lost it'))
         }
       end

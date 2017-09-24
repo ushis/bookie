@@ -1,7 +1,6 @@
-.message.is-large.has-text-centered
+.message.is-large.is-primary.has-text-centered
   .message-body
-    p
-      = octicon('search', width: 40)
+    .icon.is-large.has-text-primary
+      = octicon(:search, width: 32)
     p.is-size-5
-      strong
-        = message
+      = message
