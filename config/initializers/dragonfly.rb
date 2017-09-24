@@ -15,6 +15,7 @@ Dragonfly.app.configure do
       secret_access_key: ENV['S3_SECRET_KEY'],
       region: ENV.fetch('S3_REGION', 'us-east-1'),
       force_path_style: true,
+      logger: Rails.logger,
     },
   }
 end

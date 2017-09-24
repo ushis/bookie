@@ -88,6 +88,9 @@ Style/LambdaCall:
 Style/MutableConstant:
   Enabled: false
 
+Style/NegatedIf:
+  Enabled: false
+
 Style/NumericPredicate:
   EnforcedStyle: 'comparison'
 

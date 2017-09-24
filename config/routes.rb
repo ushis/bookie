@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'books#index'
 
+  get '/health', to: 'health_checks#show'
+
   get    '/sign_in',  to: 'users#sign_in_form'
   post   '/sign_in',  to: 'users#sign_in'
   delete '/sign_out', to: 'users#sign_out'

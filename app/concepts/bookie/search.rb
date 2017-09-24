@@ -8,6 +8,10 @@ module Bookie
         @client ||= Elasticsearch::Client.new(config[:client])
       end
 
+      def ping
+        client.ping
+      end
+
       def query(*args)
         Query.new(client, *args)
       end

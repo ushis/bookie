@@ -39,6 +39,10 @@ module Bookie
       "#{@options.fetch(:url_host)}/#{bucket}/#{uid}"
     end
 
+    def bucket_exists?
+      s3.list_buckets.buckets.any? { |b| b.name == bucket }
+    end
+
     private
 
     def s3
