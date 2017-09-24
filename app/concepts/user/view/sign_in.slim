@@ -12,7 +12,7 @@
 
           .box
             == simple_form_for(contract, url: submit_url) do |f|
-              = f.input :login
+              = f.input :login, input_html: {autofocus: true}
               = f.input :password
               = f.button :submit, 'Sign in'
 

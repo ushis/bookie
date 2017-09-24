@@ -8,7 +8,7 @@
 
           .box
             == simple_form_for(contract, url: submit_url) do |f|
-              = f.input :username
+              = f.input :username, input_html: {autofocus: true}
               = f.input :email
               = f.input :password
               = f.input :password_confirmation
