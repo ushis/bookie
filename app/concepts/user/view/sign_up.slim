@@ -1,18 +1,21 @@
-section.section
-  .container
-    .columns
-      .column.is-6-tablet.is-offset-3-tablet.is-4-desktop.is-offset-4-desktop
-        h1.title.is-4.has-text-centered
-          | Join Bookie
+.hero.is-fullheight
+  .hero-body
+    .container
+      .columns
+        .column.is-6-tablet.is-offset-3-tablet.is-4-desktop.is-offset-4-desktop
+          h1.title.is-4.has-text-centered
+            | Join Bookie
 
-        .box
-          == simple_form_for(contract, url: submit_url) do |f|
-            = f.input :username
-            = f.input :email
-            = f.input :password
-            = f.input :password_confirmation
-            = f.button :submit, 'Create an account'
+          .box
+            == simple_form_for(contract, url: submit_url) do |f|
+              = f.input :username
+              = f.input :email
+              = f.input :password
+              = f.input :password_confirmation
+              = f.button :submit, 'Create an account'
 
-        .box.has-text-centered
-          | Already a Bookie member?
-          =< link_to_sign_in
+          .message.has-text-centered
+            .message-body
+              p
+                | Already a Bookie member?
+                =< link_to_sign_in

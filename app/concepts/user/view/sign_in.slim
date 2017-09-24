@@ -1,20 +1,23 @@
-section.section
-  .container
-    .columns
-      .column.is-6-tablet.is-offset-3-tablet.is-4-desktop.is-offset-4-desktop
-        h1.title.is-4.has-text-centered
-          | Sign in to Bookie
+.hero.is-fullheight
+  .hero-body
+    .container
+      .columns
+        .column.is-6-tablet.is-offset-3-tablet.is-4-desktop.is-offset-4-desktop
+          h1.title.is-4.has-text-centered
+            | Sign in to Bookie
 
-        - if show_error?
-          .notification.is-danger
-            = error_message
+          - if show_error?
+            .notification.is-danger
+              = error_message
 
-        .box
-          == simple_form_for(contract, url: submit_url) do |f|
-            = f.input :login
-            = f.input :password
-            = f.button :submit, 'Sign in'
+          .box
+            == simple_form_for(contract, url: submit_url) do |f|
+              = f.input :login
+              = f.input :password
+              = f.button :submit, 'Sign in'
 
-        .box.has-text-centered
-          | New to Bookie?
-          =< link_to_sign_up
+          .message.has-text-centered
+            .message-body
+              p
+                | New to Bookie?
+                =< link_to_sign_up
