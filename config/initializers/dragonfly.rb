@@ -6,13 +6,13 @@ Dragonfly.app.configure do
   secret Rails.application.secrets.dragonfly
 
   datastore :s3, {
-    url_host: ENV.fetch('S3_URL_HOST') { ENV.fetch('S3_ENDPOINT') },
+    url_host: ENV.fetch('S3_URL_HOST', ENV['S3_ENDPOINT']),
     bucket: ENV.fetch('S3_BUCKET', Rails.env),
     acl: ENV.fetch('S3_ACL', 'public-read'),
     credentials: {
-      endpoint: ENV.fetch('S3_ENDPOINT'),
-      access_key_id: ENV.fetch('S3_ACCESS_KEY'),
-      secret_access_key: ENV.fetch('S3_SECRET_KEY'),
+      endpoint: ENV['S3_ENDPOINT'],
+      access_key_id: ENV['S3_ACCESS_KEY'],
+      secret_access_key: ENV['S3_SECRET_KEY'],
       region: ENV.fetch('S3_REGION', 'us-east-1'),
       force_path_style: true,
     },
