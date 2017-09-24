@@ -44,5 +44,13 @@ RSpec.describe Book::ISBN::Normalize do
         expect(result['isbn']).to eq('9780220000004')
       end
     end
+
+    context 'and some characters' do
+      let(:isbn) { '00invalid0' }
+
+      it 'fails' do
+        expect(result).to be_failure
+      end
+    end
   end
 end
