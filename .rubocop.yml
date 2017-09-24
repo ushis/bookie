@@ -3,6 +3,7 @@ AllCops:
   CacheRootDirectory: 'tmp/cache'
   Exclude:
     - 'db/schema.rb'
+    - 'vendor/**/*'
 
 Layout/AlignParameters:
   EnforcedStyle: 'with_fixed_indentation'

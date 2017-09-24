@@ -1,7 +1,6 @@
 version: '2'
 
 volumes:
-  bundle:
   postgres:
   redis:
   minio:
@@ -12,8 +11,7 @@ services:
   app: &bookie
     build: .
     volumes:
-      - .:/home/app/src
-      - bundle:/home/app/bundle
+      - .:/srv/app
     ports:
       - '3000:3000'
     depends_on:

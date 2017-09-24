@@ -20,17 +20,15 @@ RUN apk add --no-cache \
   xz-dev \
   zlib-dev
 
-RUN adduser -h /home/app -s /bin/bash -D app
-
-RUN mkdir /home/app/src /home/app/data
-WORKDIR /home/app/src
+RUN adduser -h /srv/app -s /bin/sh -D app
+WORKDIR /srv/app
 
 ENV BUNDLE_JOBS=4 \
-  BUNDLE_PATH=/home/app/bundle \
-  BUNDLE_BIN=/home/app/bundle/bin \
-  BUNDLE_APP_CONFIG=/home/app/bundle/config \
-  GEM_PATH=/home/app/bundle:$GEM_PATH \
-  PATH=/home/app/bundle/bin:$PATH
+  BUNDLE_PATH=/srv/app/vendor \
+  BUNDLE_BIN=/srv/app/vendor/bin \
+  BUNDLE_APP_CONFIG=/srv/app/vendor/config \
+  GEM_PATH=/srv/app/vendor:$GEM_PATH \
+  PATH=/srv/app/vendor/bin:$PATH
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
@@ -39,9 +37,10 @@ COPY package.json ./
 RUN npm install
 
 COPY . ./
-RUN chown -R app:app /home/app
+
+RUN rake assets:precompile && \
+  chown -R app:app ./tmp ./log
 
 EXPOSE 3000
-
 USER app
 CMD rails s -b 0.0.0.0

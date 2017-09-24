@@ -3,8 +3,6 @@ module Bookie
 
     def initialize(options={})
       @options = options
-
-      create_bucket
     end
 
     def write(content, _options={})
@@ -44,7 +42,12 @@ module Bookie
     private
 
     def s3
-      @s3 ||= Aws::S3::Client.new(@options.fetch(:credentials))
+      @s3 ||= Aws::S3::Client.new(@options.fetch(:credentials)).tap do |client|
+        begin
+          client.create_bucket(bucket: bucket, acl: acl)
+        rescue Aws::S3::Errors::BucketAlreadyOwnedByYou # rubocop:disable Lint/HandleExceptions
+        end
+      end
     end
 
     def bucket
@@ -53,15 +56,6 @@ module Bookie
 
     def acl
       @options[:acl]
-    end
-
-    def create_bucket
-      s3.create_bucket({
-        bucket: bucket,
-        acl: acl,
-      })
-    rescue Aws::S3::Errors::BucketAlreadyOwnedByYou
-      false
     end
   end
 end
