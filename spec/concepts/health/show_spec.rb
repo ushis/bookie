@@ -10,12 +10,15 @@ RSpec.describe Health::Show, type: :operation do
 
   let(:sidekiq_processes_size) { rand(1..10) }
 
+  let(:system_hash) { result['system'].to_h }
+
   it 'successfully reports healthiness' do
     expect(result).to be_success
+    expect(result['system']).to be_healthy
 
-    expect(result['health']).to eq({
+    expect(system_hash).to eq({
       status: 'ok',
-      components: {
+      checks: {
         database: 'ok',
         elasticsearch: 'ok',
         s3: 'ok',
@@ -31,11 +34,11 @@ RSpec.describe Health::Show, type: :operation do
 
     it 'successfully reports unhealthiness' do
       expect(result).to be_success
-      expect(result['health'][:status]).to eq('critical')
-      expect(result['health'][:components][:database]).to match(/\Acritical: .*\z/)
-      expect(result['health'][:components][:elasticsearch]).to eq('ok')
-      expect(result['health'][:components][:s3]).to eq('ok')
-      expect(result['health'][:components][:sidekiq]).to eq('ok')
+      expect(system_hash[:status]).to eq('critical')
+      expect(system_hash[:checks][:database]).to match(/\Acritical: .*\z/)
+      expect(system_hash[:checks][:elasticsearch]).to eq('ok')
+      expect(system_hash[:checks][:s3]).to eq('ok')
+      expect(system_hash[:checks][:sidekiq]).to eq('ok')
     end
   end
 
@@ -44,11 +47,11 @@ RSpec.describe Health::Show, type: :operation do
 
     it 'successfully reports unhealthiness' do
       expect(result).to be_success
-      expect(result['health'][:status]).to eq('critical')
-      expect(result['health'][:components][:database]).to eq('ok')
-      expect(result['health'][:components][:elasticsearch]).to match(/\Acritical: .*\z/)
-      expect(result['health'][:components][:s3]).to eq('ok')
-      expect(result['health'][:components][:sidekiq]).to eq('ok')
+      expect(system_hash[:status]).to eq('critical')
+      expect(system_hash[:checks][:database]).to eq('ok')
+      expect(system_hash[:checks][:elasticsearch]).to match(/\Acritical: .*\z/)
+      expect(system_hash[:checks][:s3]).to eq('ok')
+      expect(system_hash[:checks][:sidekiq]).to eq('ok')
     end
   end
 
@@ -57,11 +60,11 @@ RSpec.describe Health::Show, type: :operation do
 
     it 'successfully reports unhealthiness' do
       expect(result).to be_success
-      expect(result['health'][:status]).to eq('critical')
-      expect(result['health'][:components][:database]).to eq('ok')
-      expect(result['health'][:components][:elasticsearch]).to eq('ok')
-      expect(result['health'][:components][:s3]).to match(/\Acritical: .*\z/)
-      expect(result['health'][:components][:sidekiq]).to eq('ok')
+      expect(system_hash[:status]).to eq('critical')
+      expect(system_hash[:checks][:database]).to eq('ok')
+      expect(system_hash[:checks][:elasticsearch]).to eq('ok')
+      expect(system_hash[:checks][:s3]).to match(/\Acritical: .*\z/)
+      expect(system_hash[:checks][:sidekiq]).to eq('ok')
     end
   end
 
@@ -73,11 +76,11 @@ RSpec.describe Health::Show, type: :operation do
 
     it 'successfully reports unhealthiness' do
       expect(result).to be_success
-      expect(result['health'][:status]).to eq('critical')
-      expect(result['health'][:components][:database]).to eq('ok')
-      expect(result['health'][:components][:elasticsearch]).to eq('ok')
-      expect(result['health'][:components][:s3]).to match(/\Acritical: .*\z/)
-      expect(result['health'][:components][:sidekiq]).to eq('ok')
+      expect(system_hash[:status]).to eq('critical')
+      expect(system_hash[:checks][:database]).to eq('ok')
+      expect(system_hash[:checks][:elasticsearch]).to eq('ok')
+      expect(system_hash[:checks][:s3]).to match(/\Acritical: .*\z/)
+      expect(system_hash[:checks][:sidekiq]).to eq('ok')
     end
   end
 
@@ -86,11 +89,11 @@ RSpec.describe Health::Show, type: :operation do
 
     it 'successfully reports unhealthiness' do
       expect(result).to be_success
-      expect(result['health'][:status]).to eq('critical')
-      expect(result['health'][:components][:database]).to eq('ok')
-      expect(result['health'][:components][:elasticsearch]).to eq('ok')
-      expect(result['health'][:components][:s3]).to eq('ok')
-      expect(result['health'][:components][:sidekiq]).to match(/\Acritical: .*\z/)
+      expect(system_hash[:status]).to eq('critical')
+      expect(system_hash[:checks][:database]).to eq('ok')
+      expect(system_hash[:checks][:elasticsearch]).to eq('ok')
+      expect(system_hash[:checks][:s3]).to eq('ok')
+      expect(system_hash[:checks][:sidekiq]).to match(/\Acritical: .*\z/)
     end
   end
 
@@ -102,11 +105,11 @@ RSpec.describe Health::Show, type: :operation do
 
     it 'successfully reports unhealthiness' do
       expect(result).to be_success
-      expect(result['health'][:status]).to eq('critical')
-      expect(result['health'][:components][:database]).to eq('ok')
-      expect(result['health'][:components][:elasticsearch]).to eq('ok')
-      expect(result['health'][:components][:s3]).to eq('ok')
-      expect(result['health'][:components][:sidekiq]).to match(/\Acritical: .*\z/)
+      expect(system_hash[:status]).to eq('critical')
+      expect(system_hash[:checks][:database]).to eq('ok')
+      expect(system_hash[:checks][:elasticsearch]).to eq('ok')
+      expect(system_hash[:checks][:s3]).to eq('ok')
+      expect(system_hash[:checks][:sidekiq]).to match(/\Acritical: .*\z/)
     end
   end
 end
