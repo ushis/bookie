@@ -45,6 +45,10 @@ module Bookie
           link_to('Your Profile', user_path(current_user), class: 'navbar-item')
         end
 
+        def link_to_settings
+          link_to('Settings', settings_account_path, class: 'navbar-item')
+        end
+
         def link_to_sign_out
           link_to('Sign out', sign_out_path, method: :delete, class: 'navbar-item')
         end

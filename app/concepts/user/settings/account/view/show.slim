@@ -1,0 +1,24 @@
+section.section
+  .container
+    .columns
+      .column.is-4-tablet.is-3-desktop
+        = navigation
+
+      .column
+        h1.title
+          | Account
+
+        hr
+
+        .columns.is-multiline
+          .column.is-12-tablet.is-8-desktop
+            .box
+              = account_form
+
+            .box
+              = password_form
+
+          .column
+            .box.thumbnail
+              figure.image
+                = concept('user/cell/avatar', model, version: :large)

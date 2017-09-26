@@ -1,7 +1,10 @@
 .octicon {
-  display: inline-block;
-  vertical-align: text-top;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   fill: currentColor;
+  height: 0.9rem;
+  width: 0.9rem;
 }
 
 .button {

@@ -18,13 +18,6 @@ class User < ApplicationRecord
       property :password_confirmation,
         virtual: true
 
-      validation :default do
-        required(:username).filled(format?: /\A[a-z_\-]+\z/, max_size?: 25)
-        required(:email).filled(format?: /\A.+@.+\z/)
-        required(:password).filled
-        required(:password_confirmation).filled
-      end
-
       validation :username do
         configure do
           def unique?(value)
@@ -32,7 +25,11 @@ class User < ApplicationRecord
           end
         end
 
-        required(:username).filled(:unique?)
+        required(:username).filled({
+          format?: /\A[a-z_\-]+\z/,
+          max_size?: 25,
+          unique?: true,
+        })
       end
 
       validation :email do
@@ -42,19 +39,14 @@ class User < ApplicationRecord
           end
         end
 
-        required(:email).filled(:unique?)
+        required(:email).filled({
+          format?: /\A.+@.+\z/,
+          unique?: true,
+        })
       end
 
       validation :password do
-        configure do
-          option :form
-
-          def confirmed?(value)
-            value == form.password
-          end
-        end
-
-        required(:password_confirmation).filled(:confirmed?)
+        required(:password).filled.confirmation
       end
     end
   end

@@ -3,4 +3,4 @@ section.section
     .box
       == simple_form_for(contract, url: submit_url) do |f|
         = f.input :isbn, input_html: {autofocus: true}
-        = f.button :submit, 'Lookup'
+        = f.button :submit, 'Lookup', class: 'is-success'
