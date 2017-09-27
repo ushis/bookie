@@ -4,7 +4,7 @@ class User < ApplicationRecord
   module Settings
     module Account
       module Cell
-        class AccountForm < Bookie::Cell
+        class DestroyForm < Bookie::Cell
 
           private
 
@@ -16,8 +16,12 @@ class User < ApplicationRecord
             settings_account_path(anchor: id)
           end
 
+          def method
+            :delete
+          end
+
           def id
-            'account-form'
+            'destroy-form'
           end
         end
       end

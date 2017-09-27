@@ -5,7 +5,7 @@ class User < ApplicationRecord
   module Settings
     module Account
       module Contract
-        class Update < Bookie::Contract
+        class Base < Bookie::Contract
           model User
 
           property :current_password,

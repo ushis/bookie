@@ -23,6 +23,12 @@ class User < ApplicationRecord
               contract: options.fetch(:password_contract),
             })
           end
+
+          def destroy_form
+            concept('user/settings/account/cell/destroy_form', nil, {
+              contract: options.fetch(:destroy_contract),
+            })
+          end
         end
       end
     end

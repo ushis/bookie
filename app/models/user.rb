@@ -12,6 +12,5 @@ class User < ApplicationRecord
     class_name: '::Session'
 
   has_one :avatar,
-    dependent: :destroy,
     class_name: '::Avatar'
 end

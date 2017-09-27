@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Update account', type: :feature do
+require 'rails_helper'
+
+RSpec.describe 'Destroy account', type: :feature do
   let(:current_user_factory) { Factory::User.new }
 
   let(:email) { Factory::User.email }
@@ -11,7 +13,7 @@ RSpec.describe 'Update account', type: :feature do
 
   before { visit('/') }
 
-  it 'is possible to update account settings' do
+  it 'is possible to destroy the users account' do
     # check navigation and visit settings page
     expect(page).to have_selector('.navbar')
 
@@ -20,29 +22,27 @@ RSpec.describe 'Update account', type: :feature do
     end
 
     # check and fill form
-    expect(page).to have_selector('#account-form')
+    expect(page).to have_selector('#destroy-form')
 
-    within('#account-form') do
-      fill_in('Email', with: email)
+    within('#destroy-form') do
       fill_in('Current password', with: Factory::User.password)
-      click_button('Update settings')
+      click_button('Delete account')
     end
 
     # check and fill form
-    expect(page).to have_selector('#account-form')
+    expect(page).to have_selector('#destroy-form')
 
-    within('#account-form') do
+    within('#destroy-form') do
       expect(page).to have_selector('.user_current_password .input.is-danger')
       fill_in('Current password', with: current_user_factory.password)
-      click_button('Update settings')
+      click_button('Delete account')
     end
 
-    # FIXME: check success message
-    expect(page).to have_selector('#account-form')
+    # check navigation
+    expect(page).to have_selector('.navbar')
 
-    within('#account-form') do
-      expect(page).to_not have_selector('.user_email .input.is-danger')
-      expect(page).to_not have_selector('.user_current_password .input.is-danger')
+    within('.navbar') do
+      expect(page).to have_link('Sign in')
     end
   end
 end

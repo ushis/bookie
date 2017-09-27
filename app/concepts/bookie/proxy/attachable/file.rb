@@ -9,11 +9,21 @@ module Bookie
         end
 
         def url
-          ::Dragonfly.app.remote_url_for(uid)
+          Dragonfly.app.remote_url_for(uid)
         end
 
         def fetch
-          ::Dragonfly.app.fetch(uid)
+          Dragonfly.app.fetch(uid)
+        end
+
+        def process!(upload)
+          job = Dragonfly.app.create(upload)
+          job = yield(job) if block_given?
+          job.store(uid: uid)
+        end
+
+        def destroy!
+          Dragonfly.app.destroy(uid)
         end
       end
     end

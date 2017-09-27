@@ -16,6 +16,7 @@ RSpec.describe User::Settings::Account::Show, type: :operation do
     expect(result['contract.password'].password).to eq(nil)
     expect(result['contract.password'].password_confirmation).to eq(nil)
     expect(result['contract.password'].current_password).to eq(nil)
+    expect(result['contract.destroy'].current_password).to eq(nil)
   end
 
   context 'as anonymous user' do

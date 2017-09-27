@@ -1,11 +1,11 @@
-require_dependency 'user/settings/account/contract/update'
+require_dependency 'user/settings/account/contract/base'
 
 class User < ApplicationRecord
   module Settings
     module Account
       module Contract
-        class Update < Bookie::Contract
-          class Account < Update
+        module Update
+          class Account < Base
 
             property :username,
               writeable: false

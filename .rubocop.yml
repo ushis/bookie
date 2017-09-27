@@ -59,9 +59,6 @@ Metrics/MethodLength:
 Metrics/ParameterLists:
   CountKeywordArgs: false
 
-Rails/Blank:
-  NilOrEmpty: true
-
 Rails/HasManyOrHasOneDependent:
   Enabled: false
 
@@ -104,7 +101,7 @@ Style/StringLiterals:
   ConsistentQuotesInMultiline: true
 
 Style/SymbolArray:
-  EnforcedStyle: brackets
+  EnforcedStyle: 'brackets'
 
 Style/TernaryParentheses:
   EnforcedStyle: 'require_parentheses_when_complex'

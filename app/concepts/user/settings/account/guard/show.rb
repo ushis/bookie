@@ -4,7 +4,7 @@ class User < ApplicationRecord
   module Settings
     module Account
       module Guard
-        class Update < Bookie::Guard
+        class Show < Bookie::Guard
 
           def call
             user.present?

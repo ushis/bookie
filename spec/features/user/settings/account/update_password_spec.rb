@@ -20,9 +20,9 @@ RSpec.describe 'Update password', type: :feature do
     end
 
     # check and fill form
-    expect(page).to have_selector('form.edit_password')
+    expect(page).to have_selector('#password-form')
 
-    within('form.edit_password') do
+    within('#password-form') do
       fill_in('Password', with: password)
       fill_in('Repeat your password', with: password)
       fill_in('Current password', with: Factory::User.password)
@@ -30,9 +30,9 @@ RSpec.describe 'Update password', type: :feature do
     end
 
     # check and fill form
-    expect(page).to have_selector('form.edit_password')
+    expect(page).to have_selector('#password-form')
 
-    within('form.edit_password') do
+    within('#password-form') do
       expect(page).to have_selector('.user_current_password .input.is-danger')
       fill_in('Password', with: password)
       fill_in('Repeat your password', with: password)
@@ -41,9 +41,9 @@ RSpec.describe 'Update password', type: :feature do
     end
 
     # FIXME: check success message
-    expect(page).to have_selector('form.edit_password')
+    expect(page).to have_selector('#password-form')
 
-    within('form.edit_password') do
+    within('#password-form') do
       expect(page).to_not have_selector('.user_password .input.is-danger')
       expect(page).to_not have_selector('.user_password_confirmation .input.is-danger')
       expect(page).to_not have_selector('.user_current_password .input.is-danger')

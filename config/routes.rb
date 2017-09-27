@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   namespace :settings do
-    resource :account, only: [:show, :update] do
+    resource :account, only: [:show, :update, :destroy] do
       patch :password, to: 'accounts#update_password'
     end
   end
