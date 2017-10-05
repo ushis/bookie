@@ -1,6 +1,7 @@
 require_dependency 'bookie/operation'
 require_dependency 'user/proxy/default'
 require_dependency 'user/settings/account/contract/update/account'
+require_dependency 'user/settings/account/contract/update/avatar'
 require_dependency 'user/settings/account/contract/update/password'
 require_dependency 'user/settings/account/contract/destroy'
 require_dependency 'user/settings/account/guard/show'
@@ -13,6 +14,7 @@ class User < ApplicationRecord
         step :model!
         step self::Proxy::Build(Proxy::Default)
         step self::Proxy::Contract(constant: Contract::Update::Account, name: :account)
+        step self::Proxy::Contract(constant: Contract::Update::Avatar, name: :avatar)
         step self::Proxy::Contract(constant: Contract::Update::Password, name: :password)
         step self::Proxy::Contract(constant: Contract::Destroy, name: :destroy)
 

@@ -12,9 +12,19 @@ class User < ApplicationRecord
             concept('user/settings/cell/navigation', nil, active: :account)
           end
 
+          def avatar
+            concept('user/cell/avatar', model, version: :large)
+          end
+
           def account_form
             concept('user/settings/account/cell/account_form', nil, {
               contract: options.fetch(:account_contract),
+            })
+          end
+
+          def avatar_form
+            concept('user/settings/account/cell/avatar_form', nil, {
+              contract: options.fetch(:avatar_contract),
             })
           end
 

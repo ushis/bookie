@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User::Avatar::Destroy, type: :operation do
   let(:result) { User::Avatar::Destroy.(nil, dependencies) }
 
-  let(:dependencies) { {avatar: avatar} }
+  let(:dependencies) { {model: avatar} }
 
   let(:avatar) { user.avatar }
 
@@ -11,7 +11,9 @@ RSpec.describe User::Avatar::Destroy, type: :operation do
 
   it 'successfully destroy the avatar and its images' do
     expect(result).to be_success
-    expect { avatar.reload }.to raise_error(ActiveRecord::RecordNotFound)
+
+    expect { avatar.reload }.to \
+      raise_error(ActiveRecord::RecordNotFound)
 
     User::Avatar::Proxy::Default.new(avatar).tap do |proxy|
       expect { proxy.image[:original].fetch.apply }.to \

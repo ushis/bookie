@@ -16,7 +16,7 @@ module Settings
       result = run User::Settings::Account::Update::Account
 
       User::Settings::Account::Endpoint::Update.(result) do |m|
-        m.success { redirect_to(settings_account_url, anchor: nil) }
+        m.success { redirect_to(settings_account_url) }
         m.unauthorized { redirect_to(root_url) }
         m.invalid { render_show(result) }
       end
@@ -27,7 +27,18 @@ module Settings
       result = run User::Settings::Account::Update::Password
 
       User::Settings::Account::Endpoint::Update.(result) do |m|
-        m.success { redirect_to(settings_account_url, anchor: nil) }
+        m.success { redirect_to(settings_account_url) }
+        m.unauthorized { redirect_to(root_url) }
+        m.invalid { render_show(result) }
+      end
+    end
+
+    # PATCH /settings/account/avatar
+    def update_avatar
+      result = run User::Settings::Account::Update::Avatar
+
+      User::Settings::Account::Endpoint::Update.(result) do |m|
+        m.success { redirect_to(settings_account_url) }
         m.unauthorized { redirect_to(root_url) }
         m.invalid { render_show(result) }
       end
@@ -38,8 +49,8 @@ module Settings
       result = run User::Settings::Account::Destroy
 
       User::Settings::Account::Endpoint::Destroy.(result) do |m|
-        m.success { redirect_to(root_url, anchor: nil) }
-        m.unauthorized { redirect_to(root_url, anchor: nil) }
+        m.success { redirect_to(root_url) }
+        m.unauthorized { redirect_to(root_url) }
         m.invalid { render_show(result) }
       end
     end
@@ -49,8 +60,9 @@ module Settings
     def render_show(result)
       render_concept('user/settings/account/cell/show', result['model'], {
         account_contract: result['contract.account'],
-        password_contract: result['contract.password'],
+        avatar_contract: result['contract.avatar'],
         destroy_contract: result['contract.destroy'],
+        password_contract: result['contract.password'],
       })
     end
   end

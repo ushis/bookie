@@ -5,14 +5,17 @@ RSpec.describe User::Avatar::Lookup do
 
   let(:user) { Factory::User.create }
 
-  before { NetStub::RoboHash.stub_request(user.username, user.email) }
+  let(:robo_hash) { NetStub::RoboHash.new(user.username, user.email) }
 
-  it 'successfully creates an avatar and its versions' do
+  before { robo_hash.stub }
+
+  it 'successfully replaces the users avatar and creates its versions' do
     expect(result).to be_success
     expect(result['model']).to be_persisted
 
     User::Avatar::Proxy::Default.new(result['model']).tap do |proxy|
-      expect(proxy.image[:original]).to be_present
+      expect(proxy.image[:original].fetch.file.read).to \
+        eq(robo_hash.body)
 
       proxy.image[:large].fetch.tap do |version|
         expect(version.width).to eq(300)
@@ -29,14 +32,7 @@ RSpec.describe User::Avatar::Lookup do
         expect(version.height).to eq(20)
       end
     end
-  end
 
-  context 'when an avatar for the given user already exists' do
-    let!(:avatar) { User::Avatar::Lookup.(nil, user: user)['model'] }
-
-    it 'successfully finds the avatar' do
-      expect(result).to be_success
-      expect(result['model']).to eq(avatar)
-    end
+    expect(Avatar.where(user: user).count).to eq(1)
   end
 end

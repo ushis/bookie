@@ -146,6 +146,7 @@ GEM
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    filesize (0.1.1)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashdiff (0.3.6)
@@ -366,6 +367,7 @@ DEPENDENCIES
   dry-validation
   elasticsearch
   faker
+  filesize
   kaminari
   octicons_helper
   pg

@@ -8,7 +8,7 @@ class User < ApplicationRecord
       class Destroy < Bookie::Worker
 
         def perform(avatar_id)
-          Avatar::Destroy.(nil, avatar: ::Avatar.find(avatar_id))
+          Avatar::Destroy.(nil, model: ::Avatar.find(avatar_id))
         end
       end
     end

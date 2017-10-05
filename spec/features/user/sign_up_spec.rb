@@ -35,7 +35,7 @@ RSpec.describe 'Sign up', type: :feature do
     expect(page).to have_selector('form.new_user')
 
     within('form.new_user') do
-      expect(page).to have_selector('.user_password_confirmation .input.is-danger')
+      expect(page).to have_selector('#user_password_confirmation.is-danger')
       fill_in('Password', with: factory.password)
       fill_in('Repeat your password', with: factory.password_confirmation)
       click_button('Create an account')

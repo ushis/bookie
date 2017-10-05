@@ -9,6 +9,7 @@ class User < ApplicationRecord
           endpoint :invalid, -> (result) {
             result['result.contract.account'].try(:failure?) ||
               result['result.contract.password'].try(:failure?) ||
+              result['result.contract.avatar'].try(:failure?) ||
               result['result.contract.destroy'].try(:failure?)
           }
         end

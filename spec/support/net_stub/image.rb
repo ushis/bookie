@@ -11,10 +11,14 @@ module NetStub
       @url = url.nil? ? random_url : url
     end
 
+    def body
+      image.read
+    end
+
     def stub
       WebMock
         .stub_request(:get, url)
-        .to_return(body: jpg, headers: {'Content-Type': 'image/jpeg'})
+        .to_return(body: body, headers: {'Content-Type': 'image/png'})
     end
 
     private
@@ -23,12 +27,8 @@ module NetStub
       Faker::Internet.url
     end
 
-    def jpg
-      Base64.decode64(
-        "/9j/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8M\n" \
-        "CgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/yQALCAABAAEBAREA/8wABgAQ\n" \
-        "EAX/2gAIAQEAAD8A0s8g/9k=\n"
-      )
+    def image
+      @image ||= Fixture::Image.new
     end
   end
 end

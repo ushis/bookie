@@ -1,4 +1,5 @@
 require_dependency 'bookie/operation'
+require_dependency 'user/search/worker/delete'
 require_dependency 'user/settings/account/show'
 
 class User < ApplicationRecord
@@ -8,10 +9,15 @@ class User < ApplicationRecord
         step self::Nested(Show)
         step self::Contract::Validate(key: :user, name: :destroy)
         step :destroy!
+        step :destroy_search!
         step :destroy_avatar!
 
         def destroy!(options, model:, **)
           model.destroy
+        end
+
+        def destroy_search!(options, model:, **)
+          Search::Worker::Delete.perform_async(model.id)
         end
 
         def destroy_avatar!(options, model:, **)

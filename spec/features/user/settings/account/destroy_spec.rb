@@ -33,7 +33,7 @@ RSpec.describe 'Destroy account', type: :feature do
     expect(page).to have_selector('#destroy-form')
 
     within('#destroy-form') do
-      expect(page).to have_selector('.user_current_password .input.is-danger')
+      expect(page).to have_selector('#destroy-form-current-password.is-danger')
       fill_in('Current password', with: current_user_factory.password)
       click_button('Delete account')
     end

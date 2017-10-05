@@ -33,7 +33,7 @@ RSpec.describe 'Update password', type: :feature do
     expect(page).to have_selector('#password-form')
 
     within('#password-form') do
-      expect(page).to have_selector('.user_current_password .input.is-danger')
+      expect(page).to have_selector('#password-form-current-password.is-danger')
       fill_in('Password', with: password)
       fill_in('Repeat your password', with: password)
       fill_in('Current password', with: current_user_factory.password)
@@ -44,9 +44,9 @@ RSpec.describe 'Update password', type: :feature do
     expect(page).to have_selector('#password-form')
 
     within('#password-form') do
-      expect(page).to_not have_selector('.user_password .input.is-danger')
-      expect(page).to_not have_selector('.user_password_confirmation .input.is-danger')
-      expect(page).to_not have_selector('.user_current_password .input.is-danger')
+      expect(page).to_not have_selector('#user_password.is-danger')
+      expect(page).to_not have_selector('#user_password_confirmation.is-danger')
+      expect(page).to_not have_selector('#password-form-current-password.is-danger')
     end
   end
 end

@@ -3,6 +3,8 @@ en:
     isbn?: "is not a valid isbn"
     unique?: "is already taken"
     correct?: "is incorrect"
+    image_type?: "invalid format, we support: %{types}"
+    max_file_size?: "file is too big, limit is %{max_size}"
 
     rules:
       password_confirmation:
