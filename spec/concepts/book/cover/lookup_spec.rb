@@ -7,14 +7,18 @@ RSpec.describe Book::Cover::Lookup do
 
   before { NetStub::BigBookSearch.stub_request(isbn, cover_url) }
 
-  let(:cover_url) { NetStub::Image.stub_request }
+  let(:cover_url) { image.url }
+
+  let(:image) { NetStub::Image.new }
+
+  before { image.stub }
 
   it 'successfully creates a cover and its versions' do
     expect(result).to be_success
     expect(result['model']).to be_persisted
 
     Book::Cover::Proxy::Default.new(result['model']).tap do |proxy|
-      expect(proxy.image[:original]).to be_present
+      expect(proxy.image[:original].fetch.file.read).to eq(image.body)
       expect(proxy.image[:small].fetch.width).to eq(100)
       expect(proxy.image[:large].fetch.width).to eq(300)
 

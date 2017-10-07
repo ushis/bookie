@@ -1,0 +1,3 @@
+== simple_form_for(contract, url: url, html: {id: id}) do |f|
+  == f.simple_fields_for(:avatar) do |fields|
+    = fields.input :image, as: :file, label: 'Upload new avatar', input_html: {data: {autosubmit: 'form'}}

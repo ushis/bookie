@@ -12,17 +12,18 @@ en:
 
     labels:
       defaults:
-        login: 'Username or email address'
-        user: 'Username'
+        current_password: 'Current password'
         email: 'Email'
+        isbn: 'ISBN'
+        login: 'Username or email address'
         password: 'Password'
         password_confirmation: 'Repeat your password'
-        isbn: 'ISBN'
+        user: 'Username'
 
     hints:
       defaults:
-        username: 'Allowed are lower case characters, dashes and underscores.'
         email: 'We promise not to share your email with anyone.'
+        username: 'Allowed are lower case characters, dashes and underscores.'
 
     # Examples:
     #

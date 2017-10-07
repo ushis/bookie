@@ -2,12 +2,12 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
   .container
     .navbar-brand
       = brand
-      .navbar-burger.burger
+      .navbar-burger.burger data-toggle='is-active' data-target='#main-navigation-menu'
         span
         span
         span
 
-    .navbar-menu
+    .navbar-menu id='main-navigation-menu'
       .navbar-start
         .navbar-item
           == form_tag(search_url, method: :get) do
@@ -38,4 +38,6 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
                     = username
               hr.navbar-divider
               = link_to_profile
+              hr.navbar-divider
+              = link_to_settings
               = link_to_sign_out

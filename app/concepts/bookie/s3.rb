@@ -5,8 +5,8 @@ module Bookie
       @options = options
     end
 
-    def write(content, _options={})
-      uid = SecureRandom.uuid
+    def write(content, options={})
+      uid = options.fetch(:uid)
 
       s3.put_object({
         acl: acl,

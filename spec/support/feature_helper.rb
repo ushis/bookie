@@ -24,7 +24,7 @@ module FeatureHelper
     expect(page).to have_selector('.navbar')
 
     within('.navbar') do
-      expect(page).to have_content(username)
+      expect(page).to have_selector('.avatar')
     end
 
     # visit root page

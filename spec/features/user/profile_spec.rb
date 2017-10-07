@@ -12,6 +12,7 @@ RSpec.describe 'Visit profile', type: :feature do
     expect(page).to have_selector('.navbar')
 
     within('.navbar') do
+      find('.avatar').hover
       click_link('Your Profile')
     end
 

@@ -44,7 +44,7 @@ RSpec.describe 'Sign in', type: :feature do
     expect(page).to have_selector('.navbar')
 
     within('.navbar') do
-      expect(page).to have_content(username)
+      expect(page).to have_selector(%{img.avatar[alt="Avatar of #{username}"]})
     end
   end
 end

@@ -20,6 +20,10 @@ module Bookie
         client.index(*args)
       end
 
+      def delete(*args)
+        client.delete(*args)
+      end
+
       def create_indices(force:false)
         config[:indices].each_key { |index|
           create_index(index: index, force: force)

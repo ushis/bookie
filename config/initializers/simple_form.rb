@@ -1,22 +1,45 @@
 SimpleForm.setup do |config|
 
-  # Bulma compatible wrapper
-  config.wrappers(:default, tag: 'div', class: 'field') do |b|
-    b.use(:html5)
-    b.use(:placeholder)
-    b.optional(:maxlength)
-    b.optional(:minlength)
-    b.optional(:pattern)
-    b.optional(:min_max)
-    b.optional(:readonly)
-    b.use(:label)
+  # Bulma compatible wrappers
+  config.wrappers(:default, tag: 'div', class: 'field') do |a|
+    a.use(:html5)
+    a.use(:placeholder)
+    a.optional(:maxlength)
+    a.optional(:minlength)
+    a.optional(:pattern)
+    a.optional(:min_max)
+    a.optional(:readonly)
+    a.use(:label)
 
-    b.wrapper(tag: 'div', class: 'control') do |ba|
-      ba.use(:input, class: 'input')
+    a.wrapper(tag: 'div', class: 'control') do |b|
+      b.use(:input, class: 'input')
     end
 
-    b.use(:error, wrap_with: {tag: 'p', class: 'help is-danger'})
-    b.use(:hint,  wrap_with: {tag: 'p', class: 'help'})
+    a.use(:error, wrap_with: {tag: 'p', class: 'help is-danger'})
+    a.use(:hint,  wrap_with: {tag: 'p', class: 'help'})
+  end
+
+  config.wrappers(:file, tag: 'div', class: 'field') do |a|
+    a.use(:html5)
+
+    a.wrapper(:file, tag: 'div', class: 'file is-centered') do |b|
+      b.wrapper(tag: 'label', class: 'file-label') do |c|
+        c.use(:input, class: 'file-input')
+
+        c.wrapper(tag: 'span', class: 'file-cta') do |d|
+          d.wrapper(tag: 'span', class: 'file-icon') do |e|
+            e.use(:icon)
+          end
+
+          d.wrapper(tag: 'span', class: 'file-label') do |e|
+            e.use(:label_text)
+          end
+        end
+      end
+    end
+
+    a.use(:error, wrap_with: {tag: 'p', class: 'help has-text-centered is-danger'})
+    a.use(:hint,  wrap_with: {tag: 'p', class: 'help has-text-centered'})
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -29,7 +52,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'button is-success'
+  config.button_class = 'button'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -75,7 +98,7 @@ SimpleForm.setup do |config|
   # config.default_form_class = nil
 
   # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  config.generate_additional_classes_for = [:label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -97,7 +120,7 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  # config.wrapper_mappings = { string: :prepend }
+  config.wrapper_mappings = {file: :file}
 
   # Namespaces where SimpleForm should look for custom input classes that
   # override default inputs.

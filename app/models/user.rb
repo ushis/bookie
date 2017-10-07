@@ -12,6 +12,6 @@ class User < ApplicationRecord
     class_name: '::Session'
 
   has_one :avatar,
-    dependent: :destroy,
+    -> { order(created_at: :desc) },
     class_name: '::Avatar'
 end
