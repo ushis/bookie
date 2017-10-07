@@ -16,7 +16,8 @@ module Settings
       result = run User::Settings::Account::Update::Account
 
       User::Settings::Account::Endpoint::Update.(result) do |m|
-        m.success { redirect_to(settings_account_url) }
+        # FIXME: remove knowledge about the template (anchor: 'top')
+        m.success { redirect_to(settings_account_url(anchor: 'top')) }
         m.unauthorized { redirect_to(root_url) }
         m.invalid { render_show(result) }
       end
@@ -27,7 +28,8 @@ module Settings
       result = run User::Settings::Account::Update::Password
 
       User::Settings::Account::Endpoint::Update.(result) do |m|
-        m.success { redirect_to(settings_account_url) }
+        # FIXME: remove knowledge about the template (anchor: 'top')
+        m.success { redirect_to(settings_account_url(anchor: 'top')) }
         m.unauthorized { redirect_to(root_url) }
         m.invalid { render_show(result) }
       end
@@ -38,7 +40,8 @@ module Settings
       result = run User::Settings::Account::Update::Avatar
 
       User::Settings::Account::Endpoint::Update.(result) do |m|
-        m.success { redirect_to(settings_account_url) }
+        # FIXME: remove knowledge about the template (anchor: 'top')
+        m.success { redirect_to(settings_account_url(anchor: 'top')) }
         m.unauthorized { redirect_to(root_url) }
         m.invalid { render_show(result) }
       end

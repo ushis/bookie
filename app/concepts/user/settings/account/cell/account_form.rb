@@ -13,7 +13,7 @@ class User < ApplicationRecord
           end
 
           def url
-            settings_account_path
+            settings_account_path(anchor: id)
           end
 
           def id
