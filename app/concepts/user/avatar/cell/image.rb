@@ -16,7 +16,7 @@ class User < ApplicationRecord
         end
 
         def show
-          image_tag(url, alt: alt)
+          image_tag(url, alt: alt, class: 'avatar')
         end
 
         private

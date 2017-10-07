@@ -33,12 +33,18 @@ gem 'simple_form'
 gem 'sass-rails'
 gem 'uglifier'
 
+group :development, :test do
+  gem 'dotenv-rails'
+end
+
 group :test do
   gem 'capybara'
   gem 'coveralls', require: false
+  gem 'database_cleaner'
   gem 'faker'
   gem 'rspec-cells'
   gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'selenium-webdriver'
   gem 'webmock'
 end

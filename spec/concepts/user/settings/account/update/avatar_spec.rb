@@ -57,8 +57,8 @@ RSpec.describe User::Settings::Account::Update::Avatar, type: :operation do
     end
   end
 
-  context 'with invalid image type' do
-    let(:image) { StringIO.new(Faker::Config.random.bytes(500.kilobytes)) }
+  context 'with invalid file type' do
+    let(:fixture) { Fixture::Document.new }
 
     it 'fails with an error' do
       expect(result).to be_failure

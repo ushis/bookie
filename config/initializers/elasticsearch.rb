@@ -9,7 +9,7 @@ module Elasticsearch
       private
 
       def config
-        @config ||= default.deep_merge(raw.fetch(Rails.env).deep_symbolize_keys)
+        @config ||= default.deep_merge(raw.deep_symbolize_keys)
       end
 
       def default
@@ -25,7 +25,7 @@ module Elasticsearch
       end
 
       def file
-        Rails.root.join('config', 'elasticsearch.yml').open.read
+        Rails.root.join('config', 'elasticsearch.yml').read
       end
     end
   end

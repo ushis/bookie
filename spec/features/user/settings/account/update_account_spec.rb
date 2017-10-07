@@ -16,6 +16,7 @@ RSpec.describe 'Update account', type: :feature do
     expect(page).to have_selector('.navbar')
 
     within('.navbar') do
+      find('.avatar').hover
       click_link('Settings')
     end
 

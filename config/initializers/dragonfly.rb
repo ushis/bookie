@@ -7,7 +7,7 @@ Dragonfly.app.configure do
 
   datastore :s3, {
     url_host: ENV.fetch('S3_URL_HOST', ENV['S3_ENDPOINT']),
-    bucket: ENV.fetch('S3_BUCKET', Rails.env),
+    bucket: ENV['S3_BUCKET'],
     acl: ENV.fetch('S3_ACL', 'public-read'),
     credentials: {
       endpoint: ENV['S3_ENDPOINT'],

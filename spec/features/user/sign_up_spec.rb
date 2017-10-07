@@ -46,7 +46,7 @@ RSpec.describe 'Sign up', type: :feature do
     expect(page).to have_selector('.navbar')
 
     within('.navbar') do
-      expect(page).to have_content(factory.username)
+      expect(page).to have_selector('.avatar')
     end
   end
 end
