@@ -27,7 +27,10 @@ class UsersController < ApplicationController
 
   # POST /sign_in
   def sign_in
-    result = run User::SignIn
+    result = run(User::SignIn, params, {
+      user_agent: request.user_agent,
+      ip_address: request.remote_ip,
+    })
 
     if result.success?
       cookies.permanent.encrypted[:session_id] = result['session'].id
@@ -63,7 +66,10 @@ class UsersController < ApplicationController
 
   # POST /sign_up
   def sign_up
-    result = run User::SignUp
+    result = run(User::SignUp, params, {
+      user_agent: request.user_agent,
+      ip_address: request.remote_ip,
+    })
 
     if result.success?
       cookies.permanent.encrypted[:session_id] = result['session'].id

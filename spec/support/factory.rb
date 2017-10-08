@@ -15,29 +15,17 @@ class Factory
     end
 
     def dependencies
-      self._dependencies ||= {}
+      self._dependencies ||= []
     end
 
     def property(name, func)
       properties.push(name)
-
-      define_singleton_method(name) {
-        func.()
-      }
-
-      define_method(name) {
-        if instance_variable_defined?("@#{name}")
-          instance_variable_get("@#{name}")
-        else
-          value = instance_exec(&func)
-          instance_variable_set("@#{name}", value)
-          value
-        end
-      }
+      define_reader(name, func)
     end
 
     def dependency(name, func)
-      dependencies[name] = func
+      dependencies.push(name)
+      define_reader(name, func)
     end
 
     def before(&block)
@@ -54,6 +42,24 @@ class Factory
 
     def create(attributes={}, dependencies={})
       new(attributes, dependencies).create
+    end
+
+    private
+
+    def define_reader(name, func)
+      define_singleton_method(name) {
+        func.()
+      }
+
+      define_method(name) {
+        if instance_variable_defined?("@#{name}")
+          instance_variable_get("@#{name}")
+        else
+          value = instance_exec(&func)
+          instance_variable_set("@#{name}", value)
+          value
+        end
+      }
     end
   end
 
@@ -73,8 +79,8 @@ class Factory
   end
 
   def dependencies
-    (self.class.dependencies.keys - @dependencies.keys).map { |name|
-      [name, self.class.dependencies[name].()]
+    (self.class.dependencies - @dependencies.keys).map { |name|
+      [name, send(name)]
     }.to_h.merge(@dependencies)
   end
 

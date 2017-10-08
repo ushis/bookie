@@ -29,8 +29,21 @@ Rails.application.routes.draw do
 
   namespace :settings do
     resource :account, only: [:show, :update, :destroy] do
-      patch :avatar, to: 'accounts#update_avatar'
-      patch :password, to: 'accounts#update_password'
+      resource :avatar, only: [] do
+        patch :index, to: 'accounts#update_avatar'
+      end
+
+      resource :password, only: [] do
+        patch :index, to: 'accounts#update_password'
+      end
+    end
+
+    resource :security, only: [:show] do
+      resources :sessions, only: [] do
+        member do
+          delete :index, to: 'securities#destroy_session'
+        end
+      end
     end
   end
 end

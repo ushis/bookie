@@ -9,8 +9,12 @@ class User < ApplicationRecord
     step self::Nested(Create)
     step :session!
 
-    def session!(options, model:, **)
-      options['session'] = Session::Create.(nil, user: model)['model']
+    def session!(options, model:, user_agent:, ip_address:, **)
+      options['session'] = Session::Create.(nil, {
+        user: model,
+        user_agent: user_agent,
+        ip_address: ip_address,
+      })['model']
     end
   end
 end

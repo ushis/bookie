@@ -13,6 +13,7 @@ gem 'trailblazer-rails'
 # libs
 gem 'aws-sdk-s3'
 gem 'bcrypt'
+gem 'browser'
 gem 'dragonfly'
 gem 'dry-matcher'
 gem 'dry-types'

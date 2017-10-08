@@ -1,0 +1,23 @@
+.box
+  .media
+    .media-left.is-size-5
+      = bulp
+
+    .media-left.is-size-3 title=user_agent
+      = icon
+
+    .media-content
+      p title='We anonymize your IP for privacy reasons.'
+        strong= ip_address
+
+      p
+        strong=> browser
+        | on #{platform}
+
+      p
+        strong Signed in:
+        =< created_at
+
+    - if show_button_to_revoke?
+      .media-right
+        = button_to_revoke
