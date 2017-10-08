@@ -16,6 +16,15 @@ class User < ApplicationRecord
           })
         end
 
+        def link_to_security
+          concept('user/settings/cell/navigation/link', nil, {
+            url: settings_security_path,
+            name: 'Security',
+            icon: :shield,
+            active: active == :security,
+          })
+        end
+
         def active
           options.fetch(:active)
         end

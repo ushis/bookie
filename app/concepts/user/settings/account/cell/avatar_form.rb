@@ -13,7 +13,7 @@ class User < ApplicationRecord
           end
 
           def url
-            avatar_settings_account_path
+            settings_account_avatar_path
           end
 
           def id

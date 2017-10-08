@@ -1,0 +1,33 @@
+.bulp {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background: transparent linear-gradient($grey-light, $grey-lighter);
+  box-shadow: 0 1px 0 $white;
+
+  &.primary {
+    background: $primary none;
+    box-shadow: 0 0 10px rgba($primary, 0.5);
+  }
+
+  &.info {
+    background: $info none;
+    box-shadow: 0 0 10px rgba($info, 0.5);
+  }
+
+  &.success {
+    background: $success none;
+    box-shadow: 0 0 10px rgba($success, 0.5);
+  }
+
+  &.warning {
+    background: $warning none;
+    box-shadow: 0 0 10px rgba($warning, 0.5);
+  }
+
+  &.danger {
+    background: $danger none;
+    box-shadow: 0 0 10px rgba($danger, 0.5);
+  }
+}
