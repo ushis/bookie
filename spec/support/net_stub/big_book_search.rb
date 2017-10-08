@@ -11,7 +11,7 @@ module NetStub
     attr_reader :isbn, :urls
 
     def initialize(isbn, urls=nil)
-      @isbn = isbn
+      @isbn = isbn.to_s
       @urls = urls.nil? ? random_urls : Array.wrap(urls)
     end
 
@@ -25,7 +25,15 @@ module NetStub
     private
 
     def params
-      PARAMS.merge(Keywords: isbn)
+      PARAMS.merge(Keywords: keywords)
+    end
+
+    def keywords
+      [isbn, isbn_10].compact.join(' ')
+    end
+
+    def isbn_10
+      Book::ISBN::Convert::ISBN13.(nil, isbn: isbn)['isbn_10']
     end
 
     def body
