@@ -1,17 +1,15 @@
+require_dependency 'bookie/operation'
+
 class Book < ApplicationRecord
   module ISBN
-    class Normalize < Bookie::Operation
+    module Convert
       class ISBN10 < Bookie::Operation
-        step :remove_dashes!
         step :digits!
         step :pad!
         step :checksum!
+        step :check_digit!
         step :combine!
         step :join!
-
-        def remove_dashes!(options, isbn:, **)
-          options['isbn'] = isbn.delete('-')
-        end
 
         def digits!(options, isbn:, **)
           options['digits'] = isbn.split('')[0..8].map { |digit| Integer(digit) }
@@ -24,17 +22,21 @@ class Book < ApplicationRecord
         end
 
         def checksum!(options, digits:, **)
-          options['checksum'] = digits.each_with_index.reduce(0) { |sum, (digit, index)|
-            sum + (digit * (index.even? ? 1 : 3))
-          } % 10
+          options['checksum'] = digits
+            .each_with_index
+            .reduce(0) { |sum, (digit, index)| sum + (digit * (index.even? ? 1 : 3)) }
         end
 
-        def combine!(options, digits:, checksum:, **)
-          options['digits'] = digits.push((10 - checksum) % 10)
+        def check_digit!(options, checksum:, **)
+          options['check_digit'] = (10 - (checksum % 10)) % 10
+        end
+
+        def combine!(options, digits:, check_digit:, **)
+          options['digits'] = digits.push(check_digit)
         end
 
         def join!(options, digits:, **)
-          options['isbn'] = digits.join
+          options['isbn_13'] = digits.join
         end
       end
     end

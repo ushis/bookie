@@ -8,13 +8,25 @@ class Book < ApplicationRecord
 
         PARAMS = {SearchIndex: 'all', ItemPage: 1}
 
+        success :convert!
+        step :keywords!
         step :params!
         step :request!
         step :image!
         step :url!
 
-        def params!(options, isbn:, **)
-          options['params'] = PARAMS.merge(Keywords: isbn)
+        def convert!(options, isbn:, **)
+          options['isbn_10'] = Book::ISBN::Convert::ISBN13.(nil, {
+            isbn: isbn,
+          })['isbn_10']
+        end
+
+        def keywords!(options, isbn:, isbn_10:, **)
+          options['keywords'] = [isbn, isbn_10].compact.join(' ')
+        end
+
+        def params!(options, keywords:, **)
+          options['params'] = PARAMS.merge(Keywords: keywords)
         end
 
         def request!(options, params:, **)
