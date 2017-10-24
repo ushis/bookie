@@ -1,0 +1,44 @@
+section.section
+  .container
+    .columns
+      .column.is-4-tablet.is-3-desktop
+        = navigation
+
+      .column
+        h1.title.is-spaced
+          | Friendship request
+
+        .subtitle.is-meta.is-6
+          = state
+          p= subtitle
+
+        == comments
+
+        hr
+
+        - if show_button_to_accept?
+          .media.is-unseparated
+            .media-left
+              = octicon('link', class: 'is-avatar is-success')
+            .media-content
+              .comment.is-headless
+                .comment-body
+                  p Become friends with #{username} and share books more easily.
+                .comment-footer
+                  = button_to_accept
+
+        .media.is-unseparated
+          .media-left
+            figure.image.is-rounded
+              = concept('user/cell/avatar', current_user, version: :small)
+          .media-content
+            .comment
+              .comment-header
+                | Leave a comment
+              .comment-body
+                == simple_form_for(comment_contract, url: comment_form_url) do |f|
+                  = f.input :comment, as: :text, label: false
+                  = f.button :submit, 'Comment', class: 'is-success'
+
+                  - if show_button_to_decline?
+                    =< f.button :button, 'Decline request', name: 'comment_and_decline', value: 1

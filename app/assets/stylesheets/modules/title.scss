@@ -1,0 +1,15 @@
+.title.is-spaced + .subtitle {
+  margin-top: -1em;
+}
+
+.subtitle {
+  &.is-meta {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+
+    .tag:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}

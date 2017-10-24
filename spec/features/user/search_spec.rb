@@ -30,8 +30,8 @@ RSpec.describe 'Search users', type: :feature do
     end
 
     # check results
-    expect(page).to have_selector('.plate', minimum: 1)
-    expect(page).to have_selector('.plate', text: sample.username)
+    expect(page).to have_selector('.box', minimum: 1)
+    expect(page).to have_selector('.box', text: sample.username)
 
     # check navigation and enter search term
     expect(page).to have_selector('.navbar form')
@@ -44,7 +44,7 @@ RSpec.describe 'Search users', type: :feature do
     end
 
     # check results
-    expect(page).to have_selector('.plate', minimum: 3)
+    expect(page).to have_selector('.box', minimum: 3)
 
     # check navigation and enter search term
     expect(page).to have_selector('.navbar form')

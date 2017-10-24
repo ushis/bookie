@@ -1,5 +1,5 @@
-.plate {
-  .image {
+.image {
+  &.is-rounded {
     img {
       border-radius: $radius;
     }

@@ -1,3 +1,5 @@
+require_dependency 'bookie/cell/layout'
+
 module Bookie
   class Cell < Trailblazer::Cell
     class Layout < Cell

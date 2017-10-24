@@ -28,7 +28,7 @@ ENV BUNDLE_JOBS=4 \
   BUNDLE_BIN=/srv/app/vendor/bin \
   BUNDLE_APP_CONFIG=/srv/app/vendor/config \
   GEM_PATH=/srv/app/vendor:$GEM_PATH \
-  PATH=/srv/app/vendor/bin:$PATH
+  PATH=/srv/app/bin:/srv/app/vendor/bin:$PATH
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install

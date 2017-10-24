@@ -71,7 +71,6 @@ RSpec.configure do |config|
   }
 
   config.before(:each) {
-    WebMock.reset!
     DatabaseCleaner.strategy = :transaction
   }
 
@@ -80,6 +79,7 @@ RSpec.configure do |config|
   }
 
   config.before(:each) {
+    WebMock.reset!
     DatabaseCleaner.start
   }
 

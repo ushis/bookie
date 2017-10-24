@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     run User::Show do |result|
       render_concept('user/cell/show', result['model'], {
         books: result['books'],
+        friendship_request_contract: result['contract.friendship_request'],
       })
       return
     end
@@ -81,5 +82,26 @@ class UsersController < ApplicationController
       contract: result['contract.default'],
       layout: Bookie::Cell::Layout::Empty,
     })
+  end
+
+  # POST /users/:id/create_friendship_request
+  def create_friendship_request
+    # FIXME: use endpoint
+    result = run User::Friendship::Request::Create
+
+    if result.success?
+      redirect_to user_url(result['model'])
+      return
+    end
+
+    if result['model'].present?
+      render_concept('user/cell/show', result['model'], {
+        books: result['books'],
+        friendship_request_contract: result['contract.friendship_request'],
+      })
+      return
+    end
+
+    redirect_to root_url
   end
 end

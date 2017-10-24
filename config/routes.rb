@@ -25,7 +25,20 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      post :create_friendship_request
+    end
+  end
+
+  namespace :notifications do
+    resources :friendship_requests, only: [:index, :show] do
+      member do
+        post :accept
+        post :comment
+      end
+    end
+  end
 
   namespace :settings do
     resource :account, only: [:show, :update, :destroy] do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913163017) do
+ActiveRecord::Schema.define(version: 20171015125449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20170913163017) do
     t.index ["title"], name: "index_books_on_title"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.bigint "author_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
+
   create_table "copies", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "owner_id", null: false
@@ -50,6 +61,29 @@ ActiveRecord::Schema.define(version: 20170913163017) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["isbn"], name: "index_covers_on_isbn", unique: true
+  end
+
+  create_table "friendship_requests", force: :cascade do |t|
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
+    t.string "state", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id", "state"], name: "index_friendship_requests_on_receiver_id_and_state"
+    t.index ["receiver_id"], name: "index_friendship_requests_on_receiver_id"
+    t.index ["sender_id", "receiver_id"], name: "index_friendship_requests_on_sender_id_and_receiver_id", unique: true
+    t.index ["sender_id", "state"], name: "index_friendship_requests_on_sender_id_and_state"
+    t.index ["sender_id"], name: "index_friendship_requests_on_sender_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|

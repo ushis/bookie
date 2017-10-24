@@ -23,8 +23,8 @@ RSpec.describe 'Search books', type: :feature do
     end
 
     # check results
-    expect(page).to have_selector('.plate', minimum: 1)
-    expect(page).to have_selector('.plate', text: sample.title)
+    expect(page).to have_selector('.box', minimum: 1)
+    expect(page).to have_selector('.box', text: sample.title)
 
     # check navigation and enter search term
     expect(page).to have_selector('.navbar form')
@@ -37,7 +37,7 @@ RSpec.describe 'Search books', type: :feature do
     end
 
     # check results
-    expect(page).to have_selector('.plate', count: 3)
+    expect(page).to have_selector('.box', count: 3)
 
     # check navigation and enter search term
     expect(page).to have_selector('.navbar form')

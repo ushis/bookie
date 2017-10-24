@@ -9,7 +9,5 @@
     Rails.$(targetSelector).forEach(function(target) {
       target.classList.toggle(toggleClass);
     });
-
-    element.classList.toggle(toggleClass);
   });
 }).call(this, window.Rails);

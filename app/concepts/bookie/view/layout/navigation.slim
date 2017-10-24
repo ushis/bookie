@@ -2,7 +2,7 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
   .container
     .navbar-brand
       = brand
-      .navbar-burger.burger data-toggle='is-active' data-target='#main-navigation-menu'
+      .navbar-burger.burger id='main-navigation-burger' data-toggle='is-active' data-target='#main-navigation-menu,#main-navigation-burger'
         span
         span
         span
@@ -27,6 +27,9 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
           = link_to_lookup
 
         - if show_user_menu?
+          / FIXME: ...
+          = link_to(octicon('bell'), notifications_friendship_requests_path, class: 'navbar-item', title: 'Notifications')
+
           .navbar-item.has-dropdown.is-hoverable
             .navbar-link
               = avatar

@@ -1,6 +1,5 @@
 SimpleForm.setup do |config|
 
-  # Bulma compatible wrappers
   config.wrappers(:default, tag: 'div', class: 'field') do |a|
     a.use(:html5)
     a.use(:placeholder)
@@ -13,6 +12,24 @@ SimpleForm.setup do |config|
 
     a.wrapper(tag: 'div', class: 'control') do |b|
       b.use(:input, class: 'input')
+    end
+
+    a.use(:error, wrap_with: {tag: 'p', class: 'help is-danger'})
+    a.use(:hint,  wrap_with: {tag: 'p', class: 'help'})
+  end
+
+  config.wrappers(:textarea, tag: 'div', class: 'field') do |a|
+    a.use(:html5)
+    a.use(:placeholder)
+    a.optional(:maxlength)
+    a.optional(:minlength)
+    a.optional(:pattern)
+    a.optional(:min_max)
+    a.optional(:readonly)
+    a.use(:label)
+
+    a.wrapper(tag: 'div', class: 'control') do |b|
+      b.use(:input, class: 'textarea')
     end
 
     a.use(:error, wrap_with: {tag: 'p', class: 'help is-danger'})
@@ -120,7 +137,10 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  config.wrapper_mappings = {file: :file}
+  config.wrapper_mappings = {
+    file: :file,
+    text: :textarea,
+  }
 
   # Namespaces where SimpleForm should look for custom input classes that
   # override default inputs.
