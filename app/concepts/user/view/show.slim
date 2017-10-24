@@ -15,8 +15,8 @@ section.section
         = tabs
 
         .columns.is-multiline
-          - books.each do |book|
+          - models.each do |model|
             .column.is-12-tablet.is-6-desktop
-              = concept('book/cell/plate', book)
+              = plate(model)
 
         = pagination

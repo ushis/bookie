@@ -5,6 +5,19 @@ class User < ApplicationRecord
     class Show < Bookie::Cell
       property :username
 
+      builds do |_, options|
+        case options[:tab]
+        when :books
+          Books
+        when :friends
+          Friends
+        end
+      end
+
+      def show
+        render 'show'
+      end
+
       private
 
       def avatar
@@ -30,20 +43,21 @@ class User < ApplicationRecord
             name: 'Friends',
             counter: model.friends.count,
           }],
-          active: :books,
+          active: tab,
         })
       end
 
-      def books
-        options.fetch(:books)
+      def tab
+        options.fetch(:tab)
       end
 
       def pagination
-        concept('bookie/cell/pagination', books, {
+        concept('bookie/cell/pagination', models, {
           params: {
             controller: :users,
             action: :show,
             id: model.id,
+            tab: tab,
           },
         })
       end

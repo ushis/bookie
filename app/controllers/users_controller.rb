@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   def show
     run User::Show do |result|
       render_concept('user/cell/show', result['model'], {
+        tab: result['tab'],
         books: result['books'],
+        friends: result['friends'],
         friendship_request_contract: result['contract.friendship_request'],
       })
       return
@@ -96,7 +98,9 @@ class UsersController < ApplicationController
 
     if result['model'].present?
       render_concept('user/cell/show', result['model'], {
+        tab: result['tab'],
         books: result['books'],
+        friends: result['friends'],
         friendship_request_contract: result['contract.friendship_request'],
       })
       return
