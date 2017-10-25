@@ -22,12 +22,13 @@ RSpec.describe User::Friendship::Request::Create, type: :operation do
 
   let(:current_user) { Factory::User.create }
 
-  it 'successfully creates a new friendship request' do
+  it 'successfully creates an open friendship request' do
     expect(result).to be_success
     expect(result['model']).to eq(user)
 
     result['contract.friendship_request'].model.tap do |request|
       expect(request).to be_persisted
+      expect(request.state).to eq('open')
       expect(request.sender).to eq(current_user)
       expect(request.receiver).to eq(user)
       expect(request.comments.count).to eq(1)
@@ -47,6 +48,14 @@ RSpec.describe User::Friendship::Request::Create, type: :operation do
       expect(result).to be_failure
       expect(result['contract.friendship_request'].comments.first.errors[:comment]).to \
         be_present
+    end
+  end
+
+  context 'with invalid id' do
+    let(:id) { 0 }
+
+    it 'fails' do
+      expect(result).to be_failure
     end
   end
 
