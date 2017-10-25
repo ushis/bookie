@@ -8,11 +8,14 @@ class User < ApplicationRecord
             private
 
             def subtitle
-              "#{username} wants to be your friend."
+              tag.span(:span, class: 'has-links-bold') do
+                concat(link_to_user)
+                concat(' wants to be your friend.')
+              end
             end
 
-            def username
-              model.sender.username
+            def user
+              model.sender
             end
           end
         end

@@ -36,12 +36,14 @@ class User < ApplicationRecord
             concept('comment/cell/card', collection: options.fetch(:comments))
           end
 
-          def comment_contract
-            options.fetch(:comment_contract)
+          def comment_form
+            concept('user/notifications/friendship_request/cell/comment_form', model, {
+              contract: options.fetch(:comment_contract),
+            })
           end
 
-          def comment_form_url
-            comment_notifications_friendship_request_path(model)
+          def link_to_user
+            link_to(user.username, user_path(user))
           end
 
           def button_to_accept
@@ -53,13 +55,6 @@ class User < ApplicationRecord
 
           def show_button_to_accept?
             User::Friendship::Request::Guard::Accept.({
-              current_user: current_user,
-              model: model,
-            })
-          end
-
-          def show_button_to_decline?
-            User::Friendship::Request::Guard::Decline.({
               current_user: current_user,
               model: model,
             })

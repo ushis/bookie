@@ -1,0 +1,10 @@
+.has-links-bold {
+  > a {
+    color: currentColor;
+    font-weight: $weight-semibold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -37,15 +37,6 @@
     border-radius: $radius $radius 0 0;
     background-color: $background;
     border-bottom: 1px solid $border;
-
-    > a {
-      color: currentColor;
-      font-weight: $weight-bold;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
   .comment-body {
