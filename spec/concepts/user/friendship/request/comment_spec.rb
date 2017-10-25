@@ -138,5 +138,15 @@ RSpec.describe User::Friendship::Request::Comment, type: :operation do
         expect(result).to be_failure
       end
     end
+
+    context 'when it already is accepted' do
+      before {
+        User::Friendship::Request::Accept.({id: id}, {current_user: receiver})
+      }
+
+      it 'fails' do
+        expect(result).to be_failure
+      end
+    end
   end
 end
