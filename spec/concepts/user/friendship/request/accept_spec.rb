@@ -11,13 +11,13 @@ RSpec.describe User::Friendship::Request::Accept, type: :operation do
     Factory::FriendshipRequest.create.received_friendship_requests.first
   }
 
-  let(:receiver) { friendship_request.receiver }
-
-  let(:sender) { friendship_request.sender }
-
   let(:dependencies) { {current_user: current_user} }
 
   let(:current_user) { receiver }
+
+  let(:receiver) { friendship_request.receiver }
+
+  let(:sender) { friendship_request.sender }
 
   it 'successfully accepts the friendship request and creates a friendship' do
     expect(result).to be_success

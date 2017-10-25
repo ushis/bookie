@@ -7,7 +7,7 @@ RSpec.describe User::Friendship::Request::Create, type: :operation do
     {
       id: id,
       friendship_request: {
-        comments: [{comment: comment}],
+        comments: [{comment: message}],
       },
     }
   }
@@ -16,7 +16,7 @@ RSpec.describe User::Friendship::Request::Create, type: :operation do
 
   let(:user) { Factory::User.create }
 
-  let(:comment) { Faker::Lorem.paragraph }
+  let(:message) { Faker::Lorem.paragraph }
 
   let(:dependencies) { {current_user: current_user} }
 
@@ -33,16 +33,16 @@ RSpec.describe User::Friendship::Request::Create, type: :operation do
       expect(request.receiver).to eq(user)
       expect(request.comments.count).to eq(1)
 
-      request.comments.first.tap do |first|
-        expect(first).to be_persisted
-        expect(first.comment).to eq(comment)
-        expect(first.author).to eq(current_user)
+      request.comments.first.tap do |comment|
+        expect(comment).to be_persisted
+        expect(comment.comment).to eq(message)
+        expect(comment.author).to eq(current_user)
       end
     end
   end
 
-  context 'with blank comment' do
-    let(:comment) { '   ' }
+  context 'with blank message' do
+    let(:message) { '   ' }
 
     it 'fails with an error' do
       expect(result).to be_failure
