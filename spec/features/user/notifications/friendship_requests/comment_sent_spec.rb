@@ -2,12 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Comment on sent friendship request', type: :feature do
   before {
-    # FIXME: replace with factory
-    User::Friendship::Request::Create.({
+    Factory::FriendshipRequest.create({
       id: receiver.id,
-      friendship_request: {
-        comments: [{comment: Faker::Lorem.paragraph}],
-      },
     }, {
       current_user: current_user,
     })

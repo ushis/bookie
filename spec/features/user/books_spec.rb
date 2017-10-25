@@ -3,21 +3,9 @@ require 'rails_helper'
 RSpec.describe 'View a users friends', type: :feature do
   let!(:user) { Factory::User.create }
 
-  let!(:friend) { Factory::User.create }
+  let!(:book) { Factory::Book.create }
 
-  before {
-    Factory::FriendshipRequest.create({
-      id: friend.id,
-    }, {
-      current_user: user,
-    })
-
-    User::Friendship::Request::Accept.({
-      id: friend.received_friendship_requests.find_by(sender: user).id,
-    }, {
-      current_user: friend,
-    })
-  }
+  before { Book::Copy::Create.({book_id: book.id}, {current_user: user}) }
 
   before { visit('/') }
 
@@ -41,14 +29,7 @@ RSpec.describe 'View a users friends', type: :feature do
     expect(page).to have_link(user.username)
     click_link(user.username)
 
-    # check page and navigate to users friends
-    expect(page).to have_selector('.tabs')
-
-    within('.tabs') do
-      click_link('Friends')
-    end
-
     # check page
-    expect(page).to have_selector('.box', text: friend.username)
+    expect(page).to have_selector('.box', text: book.title)
   end
 end
