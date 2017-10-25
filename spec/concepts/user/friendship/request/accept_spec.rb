@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::Friendship::Request::Accept do
+RSpec.describe User::Friendship::Request::Accept, type: :operation do
   let(:result) { User::Friendship::Request::Accept.(params, dependencies) }
 
   let(:params) { {id: id} }
@@ -8,16 +8,12 @@ RSpec.describe User::Friendship::Request::Accept do
   let(:id) { friendship_request.id }
 
   let(:friendship_request) {
-    Factory::FriendshipRequest.create({
-      id: receiver.id,
-    }, {
-      current_user: sender,
-    }).received_friendship_requests.find_by(sender: sender)
+    Factory::FriendshipRequest.create.received_friendship_requests.first
   }
 
-  let(:receiver) { Factory::User.create }
+  let(:receiver) { friendship_request.receiver }
 
-  let(:sender) { Factory::User.create }
+  let(:sender) { friendship_request.sender }
 
   let(:dependencies) { {current_user: current_user} }
 
