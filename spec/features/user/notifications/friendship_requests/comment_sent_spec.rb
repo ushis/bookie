@@ -44,8 +44,8 @@ RSpec.describe 'Comment on sent friendship request', type: :feature do
     expect(page).to have_selector('form.new_comment')
 
     within('form.new_comment') do
-      expect(page).to have_selector('.help.is-danger')
-      fill_in(name: 'comment[comment]', with: Faker::Lorem.paragraph)
+      expect(page).to have_selector('.textarea.is-danger')
+      fill_in(class: 'textarea', with: Faker::Lorem.paragraph)
       click_button('Comment')
     end
 

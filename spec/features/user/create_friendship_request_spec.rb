@@ -44,9 +44,10 @@ RSpec.describe 'Create friendship request', type: :feature do
     expect(page).to have_selector('.modal', text: 'Send friendship request')
 
     within('.modal', text: 'Send friendship request') do
-      expect(page).to have_selector('.help.is-danger')
+      expect(page).to have_selector('.textarea.is-danger')
 
-      fill_in('friendship_request[comments_attributes][0][comment]', {
+      fill_in({
+        class: 'textarea',
         with: Faker::Lorem.paragraph,
       })
 
