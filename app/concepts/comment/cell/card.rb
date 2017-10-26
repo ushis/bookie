@@ -17,7 +17,11 @@ class Comment < ApplicationRecord
       end
 
       def username
-        link_to(model.author.username, user_path(model.author))
+        link_to(model.author.username, url_to_profile)
+      end
+
+      def url_to_profile
+        user_path(model.author)
       end
 
       def created_at

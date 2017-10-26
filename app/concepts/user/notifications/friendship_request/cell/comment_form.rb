@@ -12,6 +12,10 @@ class User < ApplicationRecord
 
           private
 
+          def url_to_profile
+            user_path(current_user)
+          end
+
           def avatar
             concept('user/cell/avatar', current_user, version: :small)
           end
