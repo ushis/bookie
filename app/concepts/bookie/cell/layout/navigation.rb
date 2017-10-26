@@ -29,6 +29,23 @@ module Bookie
           link_to('Add book', lookup_books_path, class: 'navbar-item')
         end
 
+        def show_link_to_notifications?
+          User::Notifications::FriendshipRequest::Guard::Index.(current_user: current_user)
+        end
+
+        def link_to_notifications
+          link_to(octicon('bell'), notifications_friendship_requests_path, {
+            class: %w(navbar-item).tap { |classes|
+              classes.push('has-badge') if any_notifications?
+            },
+            title: 'Notifications',
+          })
+        end
+
+        def any_notifications?
+          current_user.received_friendship_requests.exists?(state: 'open')
+        end
+
         def show_link_to_sign_in?
           !current_user.present?
         end

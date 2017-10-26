@@ -26,10 +26,10 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
         - if show_link_to_lookup?
           = link_to_lookup
 
-        - if show_user_menu?
-          / FIXME: ...
-          = link_to(octicon('bell'), notifications_friendship_requests_path, class: 'navbar-item', title: 'Notifications')
+        - if show_link_to_notifications?
+          = link_to_notifications
 
+        - if show_user_menu?
           .navbar-item.has-dropdown.is-hoverable
             .navbar-link
               = avatar
