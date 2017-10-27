@@ -9,14 +9,14 @@ class User < ApplicationRecord
           builds do |_, options|
             case options[:tab]
             when :received
-              Received
-            else
-              Sent
+              options[:received_friendship_requests].empty? ? Empty : Received
+            when :sent
+              options[:sent_friendship_requests].empty? ? Empty : Sent
             end
           end
 
-          def show
-            render 'index'
+          def show(&block)
+            render('index', &block)
           end
 
           private
@@ -74,23 +74,6 @@ class User < ApplicationRecord
 
           def open_sent_friendship_requests_count
             current_user.sent_friendship_requests.where(state: 'open').count
-          end
-
-          def plates
-            concept('user/notifications/friendship_request/cell/plate', {
-              collection: friendship_requests,
-            })
-          end
-
-          def pagination
-            concept('bookie/cell/pagination', friendship_requests, {
-              params: {
-                controller: 'notifications/friendship_requests',
-                action: :index,
-                tab: tab,
-                state: state,
-              },
-            })
           end
         end
       end

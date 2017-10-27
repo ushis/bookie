@@ -1,5 +1,13 @@
 en:
   user:
+    notifications:
+      friendship_request:
+        index:
+          empty:
+            message:
+              open: "There aren't any open friendship requests."
+              closed: "There aren't any closed friendship requests."
+
     show:
       empty:
         message:
