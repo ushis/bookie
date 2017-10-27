@@ -8,14 +8,14 @@ class User < ApplicationRecord
       builds do |_, options|
         case options[:tab]
         when :books
-          Books
+          options[:books].empty? ? Empty : Books
         when :friends
-          Friends
+          options[:friends].empty? ? Empty : Friends
         end
       end
 
-      def show
-        render 'show'
+      def show(&block)
+        render('show', &block)
       end
 
       private
@@ -49,17 +49,6 @@ class User < ApplicationRecord
 
       def tab
         options.fetch(:tab)
-      end
-
-      def pagination
-        concept('bookie/cell/pagination', models, {
-          params: {
-            controller: :users,
-            action: :show,
-            id: model.id,
-            tab: tab,
-          },
-        })
       end
     end
   end

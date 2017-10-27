@@ -5,18 +5,22 @@ module Search
     class Results < Bookie::Cell
       class Empty < Bookie::Cell
 
+        def show
+          concept('bookie/cell/info', message)
+        end
+
         private
 
         def message
-          I18n.t('search.results.empty', resource: resource, q: q)
-        end
-
-        def resource
-          I18n.t(options.fetch(:tab), scope: 'search.resources')
+          I18n.t(tab, scope: 'search.results.empty.message', q: q)
         end
 
         def q
           options.fetch(:q).truncate(30)
+        end
+
+        def tab
+          options.fetch(:tab)
         end
       end
     end

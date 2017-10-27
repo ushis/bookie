@@ -1,5 +1,11 @@
 en:
   user:
+    show:
+      empty:
+        message:
+          books: "There aren't any books."
+          friends: "There aren't any friends."
+
     sign_in:
       errors:
-        invalid_credentials: 'Wrong username or password.'
+        invalid_credentials: "Wrong username or password."

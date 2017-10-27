@@ -13,10 +13,4 @@ section.section
 
       .column
         = tabs
-
-        .columns.is-multiline
-          - models.each do |model|
-            .column.is-12-tablet.is-6-desktop
-              = plate(model)
-
-        = pagination
+        == yield
