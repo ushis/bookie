@@ -1,32 +1,28 @@
-require_dependency 'bookie/cell'
+require_dependency 'bookie/cell/navigation'
 
 class User < ApplicationRecord
   module Settings
     module Cell
-      class Navigation < Bookie::Cell
+      class Navigation < Bookie::Cell::Navigation
 
         private
 
-        def link_to_account
-          concept('user/settings/cell/navigation/link', nil, {
+        def title
+          'Personal settings'
+        end
+
+        def items
+          [{
+            id: :account,
             url: settings_account_path,
             name: 'Account',
             icon: :person,
-            active: active == :account,
-          })
-        end
-
-        def link_to_security
-          concept('user/settings/cell/navigation/link', nil, {
+          }, {
+            id: :security,
             url: settings_security_path,
             name: 'Security',
             icon: :shield,
-            active: active == :security,
-          })
-        end
-
-        def active
-          options.fetch(:active)
+          }]
         end
       end
     end
