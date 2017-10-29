@@ -88,24 +88,21 @@ class UsersController < ApplicationController
 
   # POST /users/:id/create_friendship_request
   def create_friendship_request
-    # FIXME: use endpoint
     result = run User::Friendship::Request::Create
 
-    if result.success?
-      redirect_to user_url(result['model'])
-      return
-    end
+    User::Friendship::Request::Endpoint::Create.(result) do |m|
+      m.success { redirect_to user_url(result['model']) }
+      m.not_found { root_url }
+      m.unauthorized { root_url }
 
-    if result['model'].present?
-      render_concept('user/cell/show', result['model'], {
-        tab: result['tab'],
-        books: result['books'],
-        friends: result['friends'],
-        friendship_request_contract: result['contract.friendship_request'],
-      })
-      return
+      m.invalid {
+        render_concept('user/cell/show', result['model'], {
+          tab: result['tab'],
+          books: result['books'],
+          friends: result['friends'],
+          friendship_request_contract: result['contract.friendship_request'],
+        })
+      }
     end
-
-    redirect_to root_url
   end
 end

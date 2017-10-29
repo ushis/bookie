@@ -55,7 +55,6 @@ RSpec.describe 'Create friendship request', type: :feature do
     end
 
     # check page
-    # FIXME: check indicator that there is a pending request
     expect(page).to_not have_selector('.button', text: 'I know this person')
   end
 end
