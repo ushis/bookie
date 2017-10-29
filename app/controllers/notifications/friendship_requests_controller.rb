@@ -26,7 +26,7 @@ module Notifications
         return
       end
 
-      redirect_to root_url
+      redirect_to notifications_friendship_requests_url
     end
 
     # POST /notifications/friendship_requests/:id/accept
@@ -42,24 +42,25 @@ module Notifications
     # POST /notifications/friendship_requests/:id/comment
     def comment
       result = run User::Friendship::Request::Comment
-      # FIXME: use endpoint
 
-      if result.success?
-        redirect_to notifications_friendship_request_url(result['model'], {
-          anchor: "comment-#{result['contract.comment'].model.id}",
-        })
-        return
+      User::Friendship::Request::Endpoint::Comment.(result) do |m|
+        m.success {
+          redirect_to notifications_friendship_request_url(result['model'], {
+            anchor: "comment-#{result['contract.comment'].model.id}",
+          })
+        }
+
+        m.not_found { redirect_to notifications_friendship_requests_url }
+
+        m.unauthorized { redirect_to root_url }
+
+        m.invalid {
+          render_concept('user/notifications/friendship_request/cell/show', result['model'], {
+            comments: result['comments'],
+            comment_contract: result['contract.comment'],
+          })
+        }
       end
-
-      if result['result.policy.default'].failure?
-        redirect_to root_url
-        return
-      end
-
-      render_concept('user/notifications/friendship_request/cell/show', result['model'], {
-        comments: result['comments'],
-        comment_contract: result['contract.comment'],
-      })
     end
   end
 end
