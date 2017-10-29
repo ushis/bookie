@@ -8,6 +8,10 @@ class Comment < ApplicationRecord
 
       private
 
+      def id
+        "comment-#{model.id}"
+      end
+
       def comment
         concept('bookie/cell/markdown', model.comment)
       end

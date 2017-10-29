@@ -45,7 +45,9 @@ module Notifications
       # FIXME: use endpoint
 
       if result.success?
-        redirect_to notifications_friendship_request_url(result['model'])
+        redirect_to notifications_friendship_request_url(result['model'], {
+          anchor: "comment-#{result['contract.comment'].model.id}",
+        })
         return
       end
 

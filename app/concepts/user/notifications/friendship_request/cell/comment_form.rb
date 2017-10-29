@@ -12,6 +12,10 @@ class User < ApplicationRecord
 
           private
 
+          def id
+            'comment-form'
+          end
+
           def url_to_profile
             user_path(current_user)
           end
@@ -25,7 +29,7 @@ class User < ApplicationRecord
           end
 
           def url
-            comment_notifications_friendship_request_path(model)
+            comment_notifications_friendship_request_path(model, anchor: id)
           end
 
           def show?
