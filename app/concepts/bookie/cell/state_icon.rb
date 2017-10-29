@@ -1,4 +1,4 @@
-
+require_dependency 'bookie/cell'
 
 module Bookie
   class Cell < Trailblazer::Cell
