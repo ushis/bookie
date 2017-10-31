@@ -5,6 +5,18 @@
   fill: currentColor;
   height: 1em;
   width: 1em;
+
+  &.is-avatar {
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    border-radius: $radius;
+  }
+
+  &.is-success {
+    color: $white;
+    background-color: $success;
+  }
 }
 
 .button {
@@ -30,5 +42,11 @@
       width: 1rem;
       height: 1rem;
     }
+  }
+}
+
+.tag {
+  .octicon {
+    margin-right: 4px;
   }
 }

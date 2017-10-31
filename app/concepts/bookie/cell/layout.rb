@@ -1,3 +1,5 @@
+require_dependency 'bookie/cell/layout/navigation'
+
 module Bookie
   class Cell < Trailblazer::Cell
     class Layout < Cell
@@ -10,12 +12,16 @@ module Bookie
         'Bookie'
       end
 
+      def body_classes
+        []
+      end
+
       def show_navigation?
         true
       end
 
-      def body_classes
-        []
+      def navigation
+        concept('bookie/cell/layout/navigation')
       end
     end
   end

@@ -240,6 +240,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redcarpet (3.4.0)
     redis (3.3.3)
     reform (2.2.4)
       disposable (>= 0.4.1)
@@ -388,6 +389,7 @@ DEPENDENCIES
   pg
   puma
   rails (~> 5.1.4)
+  redcarpet
   rest-client
   rspec-cells
   rspec-rails

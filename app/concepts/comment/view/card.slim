@@ -1,0 +1,14 @@
+.media.is-unseparated id=id
+  .media-left
+    a href=url_to_profile
+      figure.image.is-rounded
+        = avatar
+  .media-content
+    .comment
+      .comment-header.has-links-bold
+        => username
+        | said
+        =< created_at
+      .comment-body
+        .content
+          = comment

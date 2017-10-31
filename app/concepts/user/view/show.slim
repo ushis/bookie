@@ -2,25 +2,15 @@ section.section
   .container
     .columns
       .column.is-4-tablet.is-3-desktop
-        .thumbnail.box
-          figure.image
+        .box
+          figure.image.is-rounded
             = avatar
 
-        h1.title
+        h1.title.has-text-centered
           = username
 
+        = button_to_friendship_request_modal
+
       .column
-        .tabs
-          ul
-            li.is-active
-              a href='#'
-                | Books
-                span.counter
-                  = books_count
-
-        .columns.is-multiline
-          - books.each do |book|
-            .column.is-12-tablet.is-6-desktop
-              = concept('book/cell/plate', book)
-
-        = pagination
+        = tabs
+        == yield

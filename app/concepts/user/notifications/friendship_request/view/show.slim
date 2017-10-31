@@ -1,0 +1,33 @@
+section.section
+  .container
+    .columns
+      .column.is-4-tablet.is-3-desktop
+        = navigation
+
+      .column
+        h1.title.is-spaced
+          | Friendship request
+
+        .subtitle.is-meta.is-6
+          = state
+          p= subtitle
+
+        == comments
+
+        .divider
+
+        - if show_button_to_accept?
+          .media.is-unseparated
+            .media-left
+              = octicon('link', class: 'is-avatar is-success')
+            .media-content
+              .comment.is-headless
+                .comment-body
+                  p.has-links-bold
+                    | Become friends with
+                    =<> link_to_user
+                    | and share books more easily.
+                .comment-footer
+                  = button_to_accept
+
+        = comment_form

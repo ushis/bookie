@@ -1,0 +1,16 @@
+.media.is-unseparated id=id
+  .media-left
+    a href=url_to_profile
+      figure.image.is-rounded
+        = avatar
+  .media-content
+    .comment
+      .comment-header
+        | Leave a comment
+      .comment-body
+        == simple_form_for(contract, url: url) do |f|
+          = f.input :comment, as: :text, label: false
+          = f.button :submit, 'Comment', class: 'is-success'
+
+          - if show_button_to_decline?
+            =< f.button :button, 'Decline request', name: 'comment_and_decline', value: 1

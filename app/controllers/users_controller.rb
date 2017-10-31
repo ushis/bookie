@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   def show
     run User::Show do |result|
       render_concept('user/cell/show', result['model'], {
+        tab: result['tab'],
         books: result['books'],
+        friends: result['friends'],
+        friendship_request_contract: result['contract.friendship_request'],
       })
       return
     end
@@ -81,5 +84,25 @@ class UsersController < ApplicationController
       contract: result['contract.default'],
       layout: Bookie::Cell::Layout::Empty,
     })
+  end
+
+  # POST /users/:id/create_friendship_request
+  def create_friendship_request
+    result = run User::Friendship::Request::Create
+
+    User::Friendship::Request::Endpoint::Create.(result) do |m|
+      m.success { redirect_to user_url(result['model']) }
+      m.not_found { root_url }
+      m.unauthorized { root_url }
+
+      m.invalid {
+        render_concept('user/cell/show', result['model'], {
+          tab: result['tab'],
+          books: result['books'],
+          friends: result['friends'],
+          friendship_request_contract: result['contract.friendship_request'],
+        })
+      }
+    end
   end
 end

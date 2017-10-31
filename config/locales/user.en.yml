@@ -1,5 +1,19 @@
 en:
   user:
+    notifications:
+      friendship_request:
+        index:
+          empty:
+            message:
+              open: "There aren't any open friendship requests."
+              closed: "There aren't any closed friendship requests."
+
+    show:
+      empty:
+        message:
+          books: "There aren't any books."
+          friends: "There aren't any friends."
+
     sign_in:
       errors:
-        invalid_credentials: 'Wrong username or password.'
+        invalid_credentials: "Wrong username or password."

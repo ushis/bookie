@@ -2,6 +2,7 @@ class Factory
   class_attribute :_key, instance_accessor: false
   class_attribute :_befores, instance_accessor: false
   class_attribute :_operation, instance_accessor: false
+  class_attribute :_params, instance_accessor: false
   class_attribute :_properties, instance_accessor: false
   class_attribute :_dependencies, instance_accessor: false
 
@@ -10,12 +11,21 @@ class Factory
       self._befores ||= []
     end
 
+    def params
+      self._params ||= []
+    end
+
     def properties
       self._properties ||= []
     end
 
     def dependencies
       self._dependencies ||= []
+    end
+
+    def param(name, func)
+      params.push(name)
+      define_reader(name, func)
     end
 
     def property(name, func)
@@ -63,29 +73,39 @@ class Factory
     end
   end
 
-  def initialize(attributes={}, dependencies={})
-    @attributes = attributes
+  def initialize(params={}, dependencies={})
+    @params = params
     @dependencies = dependencies
   end
 
-  def attributes
-    (self.class.properties - @attributes.keys).map { |name|
-      [name, send(name)]
-    }.to_h.merge(@attributes)
+  def properties
+    self.class.properties.map { |name| [name, send(name)] }.to_h
   end
 
   def params
-    self.class._key.nil? ? attributes : {self.class._key => attributes}
+    property_params.deep_merge(param_params)
   end
 
   def dependencies
     (self.class.dependencies - @dependencies.keys).map { |name|
       [name, send(name)]
-    }.to_h.merge(@dependencies)
+    }.to_h.deep_merge(@dependencies)
   end
 
   def create
     self.class.befores.each { |block| instance_exec(&block) }
     self.class._operation.(params, dependencies)['model']
+  end
+
+  private
+
+  def property_params
+    self.class._key.nil? ? properties : {self.class._key => properties}
+  end
+
+  def param_params
+    (self.class.params - @params.keys).map { |name|
+      [name, send(name)]
+    }.to_h.deep_merge(@params)
   end
 end

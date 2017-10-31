@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# rails and webserver
+# rails
 gem 'rails', '~> 5.1.4'
 
 # cells and trailblazer
@@ -23,6 +23,7 @@ gem 'filesize'
 gem 'kaminari'
 gem 'pg'
 gem 'puma'
+gem 'redcarpet'
 gem 'rest-client'
 gem 'sidekiq'
 

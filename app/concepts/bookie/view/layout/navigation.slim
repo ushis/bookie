@@ -2,7 +2,7 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
   .container
     .navbar-brand
       = brand
-      .navbar-burger.burger data-toggle='is-active' data-target='#main-navigation-menu'
+      .navbar-burger.burger id='main-navigation-burger' data-toggle='is-active' data-target='#main-navigation-menu,#main-navigation-burger'
         span
         span
         span
@@ -25,6 +25,9 @@ nav.navbar.is-dark role='navigation' aria-label='main navigation'
 
         - if show_link_to_lookup?
           = link_to_lookup
+
+        - if show_link_to_notifications?
+          = link_to_notifications
 
         - if show_user_menu?
           .navbar-item.has-dropdown.is-hoverable

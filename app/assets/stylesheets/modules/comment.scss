@@ -1,0 +1,52 @@
+.comment {
+  border: 1px solid $border;
+  border-radius: $radius;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 14px;
+    display: block;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+  }
+
+  &:before {
+    border-right-color: $border;
+  }
+
+  &:after {
+    margin-top: 1px;
+    border-width: 7px;
+    border-right-color: $background;
+  }
+
+  &.is-headless {
+    &:after {
+      border-right-color: $white;
+    }
+  }
+
+  .comment-header {
+    padding: 10px 20px;
+    line-height: 22px;
+    border-radius: $radius $radius 0 0;
+    background-color: $background;
+    border-bottom: 1px solid $border;
+  }
+
+  .comment-body {
+    padding: 20px;
+  }
+
+  .comment-footer {
+    padding: 10px 20px;
+    border-radius: 0 0 $radius $radius;
+    background-color: $background;
+    border-top: 1px solid $border;
+  }
+}

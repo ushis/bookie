@@ -1,0 +1,19 @@
+.button.is-flex data-toggle='is-active' data-target="##{id}"
+  | I know this person
+
+.modal id=id class=classes
+  .modal-background
+  .modal-card
+    == simple_form_for(contract, url: url) do |f|
+      header.modal-card-head
+        .modal-card-title Send friendship request
+        button.delete type='reset' data-toggle='is-active' data-target="##{id}"
+
+      section.modal-card-body
+        - f.simple_fields_for(:comments) do |fields|
+          = fields.input :comment, as: :text, input_html: {placeholder: 'Leave a comment'}, label: false
+
+      footer.modal-card-foot
+        = f.button :submit, 'Submit', class: 'is-success'
+        button.button type='reset' data-toggle='is-active' data-target='##{id}'
+          | Cancel
